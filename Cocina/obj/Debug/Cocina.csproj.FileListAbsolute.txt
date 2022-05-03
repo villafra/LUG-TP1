@@ -1,0 +1,6 @@
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\bin\Debug\Cocina.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\bin\Debug\Cocina.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.csproj.AssemblyReference.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.csproj.CoreCompileInputs.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.pdb

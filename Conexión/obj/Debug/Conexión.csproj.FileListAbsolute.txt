@@ -1,0 +1,6 @@
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Conexión\bin\Debug\Conexión.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Conexión\bin\Debug\Conexión.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Conexión\obj\Debug\Conexión.csproj.AssemblyReference.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Conexión\obj\Debug\Conexión.csproj.CoreCompileInputs.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Conexión\obj\Debug\Conexión.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Conexión\obj\Debug\Conexión.pdb
