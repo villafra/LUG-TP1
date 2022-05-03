@@ -103,6 +103,10 @@
       <Project>{ff7c3225-dd61-45ff-8df7-863d56532b4c}</Project>
       <Name>Aspecto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Estructura\Estructura.csproj">
+      <Project>{e7c7802c-c30e-4c4f-ba15-0e75323a5887}</Project>
+      <Name>Estructura</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{582e172d-e516-4003-a972-cbc1afaf7b85}</Project>
       <Name>Negocio</Name>
