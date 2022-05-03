@@ -4,3 +4,9 @@ C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Le
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Aspecto\obj\Debug\Aspecto.csproj.CoreCompileInputs.cache
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Aspecto\obj\Debug\Aspecto.dll
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Aspecto\obj\Debug\Aspecto.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Aspecto\bin\Debug\Aspecto.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Aspecto\bin\Debug\Aspecto.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Aspecto\obj\Debug\Aspecto.csproj.AssemblyReference.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Aspecto\obj\Debug\Aspecto.csproj.CoreCompileInputs.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Aspecto\obj\Debug\Aspecto.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Aspecto\obj\Debug\Aspecto.pdb

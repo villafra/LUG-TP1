@@ -4,3 +4,9 @@ C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Le
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.csproj.CoreCompileInputs.cache
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.dll
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\Cocina\obj\Debug\Cocina.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Cocina\bin\Debug\Cocina.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Cocina\bin\Debug\Cocina.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Cocina\obj\Debug\Cocina.csproj.AssemblyReference.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Cocina\obj\Debug\Cocina.csproj.CoreCompileInputs.cache
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Cocina\obj\Debug\Cocina.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Cocina\obj\Debug\Cocina.pdb

@@ -53,21 +53,23 @@ namespace Negocio
                 dtpFechaNacimiento.Value = VerMozo.FechaNacimiento;
                 txtEdad.Text = VerMozo.DevolverEdad(VerMozo.FechaNacimiento).ToString();
                 comboTurno.Text = VerMozo.turno.NombreTurno;
-                double promedio = Math.Round(restó.Promedio(VerMozo), 1);
-                lblPuntuación.Text = promedio.ToString();
-                prgBaRanking.Value = Convert.ToInt32(promedio*10);
+                lblPuntuación.Text = VerMozo.Puntuación.ToString();
+                prgBaRanking.Value = Convert.ToInt32(VerMozo.Puntuación);
             }
             catch { }
         }
 
         private void btnModificarMozo_Click(object sender, EventArgs e)
         {
-           ActualizarGrid();
+            Mozo ModificarMozo = new Mozo(Int32.Parse(txtLegajo.Text), long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, dtpFechaNacimiento.Value, restó.DevolverTurno(comboTurno.SelectedItem.ToString()),Int32.Parse(lblPuntuación.Text));
+            restó.ABMAction(restó.ABMMozo("Modificar", ModificarMozo));
+            ActualizarGrid();
         }
 
         private void btnEliminarMozo_Click(object sender, EventArgs e)
         {
-            
+            Mozo EliminarMozo = new Mozo(Int32.Parse(txtLegajo.Text), long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text);
+            restó.ABMAction(restó.ABMMozo("Eliminar", EliminarMozo));
             ActualizarGrid();
         }
 

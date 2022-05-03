@@ -5,15 +5,15 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LUG TP1", "LUG TP1.csproj", "{24B6B83B-E599-4477-B663-C50D0D3E55DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspecto", "..\Aspecto\Aspecto.csproj", "{FF7C3225-DD61-45FF-8DF7-863D56532B4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspecto", "..\LUG TP1\Aspecto\Aspecto.csproj", "{FF7C3225-DD61-45FF-8DF7-863D56532B4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estructura", "..\Estructura\Estructura.csproj", "{E7C7802C-C30E-4C4F-BA15-0E75323A5887}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estructura", "..\LUG TP1\Estructura\Estructura.csproj", "{E7C7802C-C30E-4C4F-BA15-0E75323A5887}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocina", "..\Cocina\Cocina.csproj", "{A050BC4E-7E93-42A8-95B8-5EED78A789FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocina", "..\LUG TP1\Cocina\Cocina.csproj", "{A050BC4E-7E93-42A8-95B8-5EED78A789FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conexión", "..\Conexión\Conexión.csproj", "{9D813E77-DBD1-4435-9B0E-BFE7ECE22DDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conexión", "..\LUG TP1\Conexión\Conexión.csproj", "{9D813E77-DBD1-4435-9B0E-BFE7ECE22DDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "..\Negocio\Negocio.csproj", "{582E172D-E516-4003-A972-CBC1AFAF7B85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "..\LUG TP1\Negocio\Negocio.csproj", "{582E172D-E516-4003-A972-CBC1AFAF7B85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

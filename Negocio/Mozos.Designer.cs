@@ -228,8 +228,10 @@
             // 
             this.prgBaRanking.BackColor = System.Drawing.SystemColors.HotTrack;
             this.prgBaRanking.Location = new System.Drawing.Point(622, 78);
+            this.prgBaRanking.Maximum = 10;
             this.prgBaRanking.Name = "prgBaRanking";
             this.prgBaRanking.Size = new System.Drawing.Size(188, 42);
+            this.prgBaRanking.Step = 1;
             this.prgBaRanking.TabIndex = 9;
             // 
             // lblRanking

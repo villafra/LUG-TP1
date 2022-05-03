@@ -20,6 +20,15 @@ namespace Estructura
         {
         }
 
+        public Mozo(int legajo, long dNI, string nombre, string apellido, DateTime fechaNacimiento, Turno turno, int puntuación) : base(legajo, dNI, nombre, apellido, fechaNacimiento, turno)
+        { 
+            Puntuación = puntuación;
+        }
+
+        public Mozo(int legajo, long dNI, string nombre, string apellido) : base(legajo, dNI, nombre, apellido)
+        {
+        }
+
         public double Average(Mozo mozo)
         {
             if (mozo.Puntos.Count != 0)

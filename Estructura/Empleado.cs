@@ -35,6 +35,13 @@ namespace Estructura
 
         }
 
+        protected Empleado(int legajo, long dNI, string nombre, string apellido)
+        {
+            Legajo = legajo;
+            DNI = dNI;
+            Nombre = nombre;
+            Apellido = apellido;
+        }
 
         public int DevolverEdad(DateTime FechaNacimiento)
         {
