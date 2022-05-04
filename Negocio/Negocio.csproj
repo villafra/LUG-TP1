@@ -49,6 +49,12 @@
     <Compile Include="Layout.Designer.cs">
       <DependentUpon>Layout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Turnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turnos.Designer.cs">
+      <DependentUpon>Turnos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mozos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <EmbeddedResource Include="Layout.resx">
       <DependentUpon>Layout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Turnos.resx">
+      <DependentUpon>Turnos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mozos.resx">
       <DependentUpon>Mozos.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +139,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BorrarMozo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture11.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
