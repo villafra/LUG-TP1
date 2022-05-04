@@ -81,5 +81,20 @@ namespace LUG_TP1
             }
         }
 
+        private void TurnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmTurnos);
+            if (frm != null)
+            {
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmTurnos();
+                
+                Formatear.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

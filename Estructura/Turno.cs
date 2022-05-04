@@ -8,7 +8,7 @@ namespace Estructura
 {
     public class Turno
     {
-        List<Mozo> ListaMozos = new List<Mozo>();
+        public List<Mozo> ListaMozos = new List<Mozo>();
 
         public int Codigo { get; set; }
         public string NombreTurno { get; set; }

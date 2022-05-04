@@ -72,9 +72,9 @@
             this.panelMenuIzq.Controls.Add(this.btnLayout);
             this.panelMenuIzq.Controls.Add(this.btnReservas);
             this.panelMenuIzq.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenuIzq.Location = new System.Drawing.Point(0, 28);
+            this.panelMenuIzq.Location = new System.Drawing.Point(0, 30);
             this.panelMenuIzq.Name = "panelMenuIzq";
-            this.panelMenuIzq.Size = new System.Drawing.Size(260, 625);
+            this.panelMenuIzq.Size = new System.Drawing.Size(260, 623);
             this.panelMenuIzq.TabIndex = 0;
             // 
             // btnPedidos
@@ -163,7 +163,7 @@
             this.BebidasToolStripMenuItem});
             this.mStripMenu.Location = new System.Drawing.Point(0, 0);
             this.mStripMenu.Name = "mStripMenu";
-            this.mStripMenu.Size = new System.Drawing.Size(1116, 28);
+            this.mStripMenu.Size = new System.Drawing.Size(1116, 30);
             this.mStripMenu.TabIndex = 1;
             this.mStripMenu.Text = "menuStrip1";
             // 
@@ -214,6 +214,7 @@
             this.TurnosToolStripMenuItem.Name = "TurnosToolStripMenuItem";
             this.TurnosToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.TurnosToolStripMenuItem.Text = "Turnos";
+            this.TurnosToolStripMenuItem.Click += new System.EventHandler(this.TurnosToolStripMenuItem_Click);
             // 
             // IngredientesToolStripMenuItem
             // 

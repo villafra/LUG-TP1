@@ -20,64 +20,64 @@ namespace Negocio
         {
             InitializeComponent();
             restó.FillTurnos();
-            comboTurno.DataSource = restó.ListarTurnos();
-            Formatear.FormatearDGV(dgvMozos);
-            Formatear.FormatearGRP(grpMozos);
+            Formatear.FormatearDGV(dgvTurnos);
+            Formatear.FormatearGRP(grpTurnos);
+            Formatear.FormatearDGV(dgvMozosEnturno);
             
             
         }
 
-        private void btnNuevaMozo_Click(object sender, EventArgs e)
+        private void btnNuevoTurno_Click(object sender, EventArgs e)
         {
-            Mozo NuevoMozo = new Mozo(long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, dtpFechaNacimiento.Value,restó.DevolverTurno(comboTurno.SelectedItem.ToString()));
-            restó.ABMAction(restó.ABMMozo("Alta",NuevoMozo));
+            Turno nuevoTurno = new Turno(txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
+            restó.ABMAction(restó.ABMTurno("Alta",nuevoTurno));
             ActualizarGrid();
 
         }
 
-        private void frmMozos_Load(object sender, EventArgs e)
+        private void frmTurnos_Load(object sender, EventArgs e)
         {
             ActualizarGrid();
             
         }
 
-        private void dgvMozos_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvTurnos_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                Mozo VerMozo = (Mozo)dgvMozos.SelectedRows[0].DataBoundItem;
-                txtLegajo.Text = VerMozo.Legajo.ToString();
-                txtDNI.Text = VerMozo.DNI.ToString();
-                txtNombre.Text = VerMozo.Nombre.ToString();
-                txtApellido.Text = VerMozo.Apellido.ToString();
-                dtpFechaNacimiento.Value = VerMozo.FechaNacimiento;
-                txtEdad.Text = VerMozo.DevolverEdad(VerMozo.FechaNacimiento).ToString();
-                comboTurno.Text = VerMozo.turno.NombreTurno;
-                lblPuntuación.Text = VerMozo.Puntuación.ToString();
-                prgBaRanking.Value = Convert.ToInt32(VerMozo.Puntuación);
+                Turno VerTurno = (Turno)dgvTurnos.SelectedRows[0].DataBoundItem;
+                txtCodigo.Text = VerTurno.Codigo.ToString();
+                txtNombreTurno.Text = VerTurno.NombreTurno;
+                dtpHoraInicio.Value = VerTurno.HoraInicio;
+                dtpHoraFin.Value = VerTurno.HoraFin;
+                lblCantidad.Text = restó.CantidadMozosXTurno(VerTurno).ToString();
+                prgCantidad.Value = restó.CantidadMozosXTurno(VerTurno);
+                dgvMozosEnturno.DataSource = null;
+                dgvMozosEnturno.DataSource = restó.FillListadoMozosEnTurno(VerTurno);
+                restó.DGVTurnosMozos(dgvMozosEnturno);
             }
             catch { }
         }
 
-        private void btnModificarMozo_Click(object sender, EventArgs e)
+        private void btnModificarTurno_Click(object sender, EventArgs e)
         {
-            Mozo ModificarMozo = new Mozo(Int32.Parse(txtLegajo.Text), long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, dtpFechaNacimiento.Value, restó.DevolverTurno(comboTurno.SelectedItem.ToString()),Int32.Parse(lblPuntuación.Text));
-            restó.ABMAction(restó.ABMMozo("Modificar", ModificarMozo));
+            Turno modificarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
+            restó.ABMAction(restó.ABMTurno("Modificar", modificarTurno));
             ActualizarGrid();
         }
 
-        private void btnEliminarMozo_Click(object sender, EventArgs e)
+        private void btnEliminarTurno_Click(object sender, EventArgs e)
         {
-            Mozo EliminarMozo = new Mozo(Int32.Parse(txtLegajo.Text), long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text);
-            restó.ABMAction(restó.ABMMozo("Eliminar", EliminarMozo));
+            Turno eliminarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
+            restó.ABMAction(restó.ABMTurno("Eliminar", eliminarTurno));
             ActualizarGrid();
         }
 
         private void ActualizarGrid()
         {
-            dgvMozos.DataSource = null;
-            dgvMozos.DataSource = restó.QueryMozos();
-            restó.DGVMozos(dgvMozos);
+            dgvTurnos.DataSource = null;
+            dgvTurnos.DataSource = restó.QueryTurnos();
+            restó.DGVTurnos(dgvTurnos);
         }
 
        

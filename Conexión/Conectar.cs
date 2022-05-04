@@ -58,6 +58,21 @@ namespace Conexión
              return promedio;
         }
 
+        public int CantidadMozosEnTurno(int codigo)
+        {
+            AbrirConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = @"select count(Mozo.Codigo_Turno) as Cantidad from Turno inner join Mozo on Mozo.Codigo_Turno=Turno.Codigo_Turno where Turno.Codigo_Turno= " + codigo;
+            cmd.Connection = conexion;
+            SqlDataReader reader = cmd.ExecuteReader();
+            int cantidad = 0;
+            while (reader.Read())
+            {
+                cantidad = Convert.ToInt32(reader[0]);
+            }
+            return cantidad;
+        }
         public bool EscribirDatos(string query)
         {
             try

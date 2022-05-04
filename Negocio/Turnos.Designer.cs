@@ -28,242 +28,261 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvMozos = new System.Windows.Forms.DataGridView();
-            this.grpMozos = new System.Windows.Forms.GroupBox();
-            this.lblFechaNacimiento = new System.Windows.Forms.Label();
-            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.txtDNI = new System.Windows.Forms.TextBox();
-            this.lblDNI = new System.Windows.Forms.Label();
-            this.txtLegajo = new System.Windows.Forms.TextBox();
-            this.lblLegajo = new System.Windows.Forms.Label();
-            this.lblPuntuación = new System.Windows.Forms.Label();
-            this.prgBaRanking = new System.Windows.Forms.ProgressBar();
-            this.lblRanking = new System.Windows.Forms.Label();
-            this.btnEliminarMozo = new System.Windows.Forms.Button();
-            this.btnModificarMozo = new System.Windows.Forms.Button();
-            this.btnNuevaMozo = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMozos)).BeginInit();
-            this.grpMozos.SuspendLayout();
+            this.dgvTurnos = new System.Windows.Forms.DataGridView();
+            this.grpTurnos = new System.Windows.Forms.GroupBox();
+            this.lblHoraFin = new System.Windows.Forms.Label();
+            this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
+            this.lblHoraInicio = new System.Windows.Forms.Label();
+            this.dtpHoraInicio = new System.Windows.Forms.DateTimePicker();
+            this.txtNombreTurno = new System.Windows.Forms.TextBox();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.prgCantidad = new System.Windows.Forms.ProgressBar();
+            this.lblCantMozos = new System.Windows.Forms.Label();
+            this.btnEliminarTurno = new System.Windows.Forms.Button();
+            this.btnModificarTurno = new System.Windows.Forms.Button();
+            this.btnNuevoTurno = new System.Windows.Forms.Button();
+            this.dgvMozosEnturno = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
+            this.grpTurnos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMozosEnturno)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvMozos
+            // dgvTurnos
             // 
-            this.dgvMozos.AllowUserToAddRows = false;
-            this.dgvMozos.AllowUserToDeleteRows = false;
-            this.dgvMozos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMozos.Location = new System.Drawing.Point(98, 53);
-            this.dgvMozos.Name = "dgvMozos";
-            this.dgvMozos.ReadOnly = true;
-            this.dgvMozos.RowHeadersWidth = 51;
-            this.dgvMozos.RowTemplate.Height = 24;
-            this.dgvMozos.Size = new System.Drawing.Size(651, 254);
-            this.dgvMozos.TabIndex = 0;
-            this.dgvMozos.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMozos_RowEnter);
+            this.dgvTurnos.AllowUserToAddRows = false;
+            this.dgvTurnos.AllowUserToDeleteRows = false;
+            this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTurnos.Location = new System.Drawing.Point(167, 53);
+            this.dgvTurnos.Name = "dgvTurnos";
+            this.dgvTurnos.ReadOnly = true;
+            this.dgvTurnos.RowHeadersWidth = 51;
+            this.dgvTurnos.RowTemplate.Height = 24;
+            this.dgvTurnos.Size = new System.Drawing.Size(512, 254);
+            this.dgvTurnos.TabIndex = 0;
+            this.dgvTurnos.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurnos_RowEnter);
             // 
-            // grpMozos
+            // grpTurnos
             // 
-            this.grpMozos.Controls.Add(this.label1);
-            this.grpMozos.Controls.Add(this.dateTimePicker1);
-            this.grpMozos.Controls.Add(this.lblFechaNacimiento);
-            this.grpMozos.Controls.Add(this.dtpFechaNacimiento);
-            this.grpMozos.Controls.Add(this.txtDNI);
-            this.grpMozos.Controls.Add(this.lblDNI);
-            this.grpMozos.Controls.Add(this.txtLegajo);
-            this.grpMozos.Controls.Add(this.lblLegajo);
-            this.grpMozos.Controls.Add(this.lblPuntuación);
-            this.grpMozos.Controls.Add(this.prgBaRanking);
-            this.grpMozos.Controls.Add(this.lblRanking);
-            this.grpMozos.Location = new System.Drawing.Point(12, 313);
-            this.grpMozos.Name = "grpMozos";
-            this.grpMozos.Size = new System.Drawing.Size(826, 185);
-            this.grpMozos.TabIndex = 1;
-            this.grpMozos.TabStop = false;
-            this.grpMozos.Text = "Mesas";
+            this.grpTurnos.Controls.Add(this.dgvMozosEnturno);
+            this.grpTurnos.Controls.Add(this.lblHoraFin);
+            this.grpTurnos.Controls.Add(this.dtpHoraFin);
+            this.grpTurnos.Controls.Add(this.lblHoraInicio);
+            this.grpTurnos.Controls.Add(this.dtpHoraInicio);
+            this.grpTurnos.Controls.Add(this.txtNombreTurno);
+            this.grpTurnos.Controls.Add(this.lblNombre);
+            this.grpTurnos.Controls.Add(this.txtCodigo);
+            this.grpTurnos.Controls.Add(this.lblCodigo);
+            this.grpTurnos.Controls.Add(this.lblCantidad);
+            this.grpTurnos.Controls.Add(this.prgCantidad);
+            this.grpTurnos.Controls.Add(this.lblCantMozos);
+            this.grpTurnos.Location = new System.Drawing.Point(12, 313);
+            this.grpTurnos.Name = "grpTurnos";
+            this.grpTurnos.Size = new System.Drawing.Size(826, 185);
+            this.grpTurnos.TabIndex = 1;
+            this.grpTurnos.TabStop = false;
+            this.grpTurnos.Text = "Turnos";
             // 
-            // lblFechaNacimiento
+            // lblHoraFin
             // 
-            this.lblFechaNacimiento.AutoSize = true;
-            this.lblFechaNacimiento.Location = new System.Drawing.Point(24, 117);
-            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
-            this.lblFechaNacimiento.Size = new System.Drawing.Size(135, 16);
-            this.lblFechaNacimiento.TabIndex = 26;
-            this.lblFechaNacimiento.Text = "Fecha de Nacimiento";
+            this.lblHoraFin.AutoSize = true;
+            this.lblHoraFin.Location = new System.Drawing.Point(198, 117);
+            this.lblHoraFin.Name = "lblHoraFin";
+            this.lblHoraFin.Size = new System.Drawing.Size(77, 16);
+            this.lblHoraFin.TabIndex = 28;
+            this.lblHoraFin.Text = "Hora de Fin";
             // 
-            // dtpFechaNacimiento
+            // dtpHoraFin
             // 
-            this.dtpFechaNacimiento.CustomFormat = "dd/MM/yyyy";
-            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(27, 145);
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(121, 22);
-            this.dtpFechaNacimiento.TabIndex = 25;
+            this.dtpHoraFin.CustomFormat = "HH:mm";
+            this.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHoraFin.Location = new System.Drawing.Point(201, 145);
+            this.dtpHoraFin.Name = "dtpHoraFin";
+            this.dtpHoraFin.Size = new System.Drawing.Size(121, 22);
+            this.dtpHoraFin.TabIndex = 27;
             // 
-            // txtDNI
+            // lblHoraInicio
             // 
-            this.txtDNI.Location = new System.Drawing.Point(163, 63);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(102, 22);
-            this.txtDNI.TabIndex = 14;
-            this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.lblHoraInicio.AutoSize = true;
+            this.lblHoraInicio.Location = new System.Drawing.Point(24, 117);
+            this.lblHoraInicio.Name = "lblHoraInicio";
+            this.lblHoraInicio.Size = new System.Drawing.Size(90, 16);
+            this.lblHoraInicio.TabIndex = 26;
+            this.lblHoraInicio.Text = "Hora de Inicio";
             // 
-            // lblDNI
+            // dtpHoraInicio
             // 
-            this.lblDNI.AutoSize = true;
-            this.lblDNI.Location = new System.Drawing.Point(160, 33);
-            this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(56, 16);
-            this.lblDNI.TabIndex = 13;
-            this.lblDNI.Text = "Nombre";
+            this.dtpHoraInicio.CustomFormat = "HH:mm";
+            this.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHoraInicio.Location = new System.Drawing.Point(27, 145);
+            this.dtpHoraInicio.Name = "dtpHoraInicio";
+            this.dtpHoraInicio.Size = new System.Drawing.Size(121, 22);
+            this.dtpHoraInicio.TabIndex = 25;
             // 
-            // txtLegajo
+            // txtNombreTurno
             // 
-            this.txtLegajo.Enabled = false;
-            this.txtLegajo.Location = new System.Drawing.Point(27, 63);
-            this.txtLegajo.Name = "txtLegajo";
-            this.txtLegajo.Size = new System.Drawing.Size(99, 22);
-            this.txtLegajo.TabIndex = 12;
-            this.txtLegajo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNombreTurno.Location = new System.Drawing.Point(201, 63);
+            this.txtNombreTurno.Name = "txtNombreTurno";
+            this.txtNombreTurno.Size = new System.Drawing.Size(102, 22);
+            this.txtNombreTurno.TabIndex = 14;
+            this.txtNombreTurno.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // lblLegajo
+            // lblNombre
             // 
-            this.lblLegajo.AutoSize = true;
-            this.lblLegajo.Location = new System.Drawing.Point(24, 33);
-            this.lblLegajo.Name = "lblLegajo";
-            this.lblLegajo.Size = new System.Drawing.Size(89, 16);
-            this.lblLegajo.TabIndex = 11;
-            this.lblLegajo.Text = "Codigo Turno";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(198, 33);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(56, 16);
+            this.lblNombre.TabIndex = 13;
+            this.lblNombre.Text = "Nombre";
             // 
-            // lblPuntuación
+            // txtCodigo
             // 
-            this.lblPuntuación.AutoSize = true;
-            this.lblPuntuación.Location = new System.Drawing.Point(736, 51);
-            this.lblPuntuación.Name = "lblPuntuación";
-            this.lblPuntuación.Size = new System.Drawing.Size(14, 16);
-            this.lblPuntuación.TabIndex = 10;
-            this.lblPuntuación.Text = "0";
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(37, 63);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(99, 22);
+            this.txtCodigo.TabIndex = 12;
+            this.txtCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // prgBaRanking
+            // lblCodigo
             // 
-            this.prgBaRanking.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.prgBaRanking.Location = new System.Drawing.Point(622, 78);
-            this.prgBaRanking.Maximum = 10;
-            this.prgBaRanking.Name = "prgBaRanking";
-            this.prgBaRanking.Size = new System.Drawing.Size(188, 42);
-            this.prgBaRanking.Step = 1;
-            this.prgBaRanking.TabIndex = 9;
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(24, 33);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(89, 16);
+            this.lblCodigo.TabIndex = 11;
+            this.lblCodigo.Text = "Codigo Turno";
             // 
-            // lblRanking
+            // lblCantidad
             // 
-            this.lblRanking.AutoSize = true;
-            this.lblRanking.Location = new System.Drawing.Point(633, 51);
-            this.lblRanking.Name = "lblRanking";
-            this.lblRanking.Size = new System.Drawing.Size(57, 16);
-            this.lblRanking.TabIndex = 8;
-            this.lblRanking.Text = "Ranking";
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(427, 91);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(14, 16);
+            this.lblCantidad.TabIndex = 10;
+            this.lblCantidad.Text = "0";
             // 
-            // btnEliminarMozo
+            // prgCantidad
             // 
-            this.btnEliminarMozo.BackgroundImage = global::Negocio.Properties.Resources.Picture11;
-            this.btnEliminarMozo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEliminarMozo.FlatAppearance.BorderSize = 0;
-            this.btnEliminarMozo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarMozo.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarMozo.ForeColor = System.Drawing.Color.Gold;
-            this.btnEliminarMozo.Location = new System.Drawing.Point(738, 504);
-            this.btnEliminarMozo.Name = "btnEliminarMozo";
-            this.btnEliminarMozo.Size = new System.Drawing.Size(100, 93);
-            this.btnEliminarMozo.TabIndex = 4;
-            this.btnEliminarMozo.UseVisualStyleBackColor = true;
-            this.btnEliminarMozo.Click += new System.EventHandler(this.btnEliminarMozo_Click);
+            this.prgCantidad.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.prgCantidad.Location = new System.Drawing.Point(360, 125);
+            this.prgCantidad.Maximum = 10;
+            this.prgCantidad.Name = "prgCantidad";
+            this.prgCantidad.Size = new System.Drawing.Size(157, 42);
+            this.prgCantidad.Step = 1;
+            this.prgCantidad.TabIndex = 9;
             // 
-            // btnModificarMozo
+            // lblCantMozos
             // 
-            this.btnModificarMozo.BackgroundImage = global::Negocio.Properties.Resources.Picture12;
-            this.btnModificarMozo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnModificarMozo.FlatAppearance.BorderSize = 0;
-            this.btnModificarMozo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarMozo.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarMozo.ForeColor = System.Drawing.Color.Gold;
-            this.btnModificarMozo.Location = new System.Drawing.Point(373, 504);
-            this.btnModificarMozo.Name = "btnModificarMozo";
-            this.btnModificarMozo.Size = new System.Drawing.Size(100, 93);
-            this.btnModificarMozo.TabIndex = 3;
-            this.btnModificarMozo.UseVisualStyleBackColor = true;
-            this.btnModificarMozo.Click += new System.EventHandler(this.btnModificarMozo_Click);
+            this.lblCantMozos.AutoSize = true;
+            this.lblCantMozos.Location = new System.Drawing.Point(357, 33);
+            this.lblCantMozos.Name = "lblCantMozos";
+            this.lblCantMozos.Size = new System.Drawing.Size(104, 32);
+            this.lblCantMozos.TabIndex = 8;
+            this.lblCantMozos.Text = "Cantidad de \r\nMozos En Turno";
+            this.lblCantMozos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnNuevaMozo
+            // btnEliminarTurno
             // 
-            this.btnNuevaMozo.BackgroundImage = global::Negocio.Properties.Resources.Picture10;
-            this.btnNuevaMozo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnNuevaMozo.FlatAppearance.BorderSize = 0;
-            this.btnNuevaMozo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevaMozo.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaMozo.ForeColor = System.Drawing.Color.Gold;
-            this.btnNuevaMozo.Location = new System.Drawing.Point(12, 504);
-            this.btnNuevaMozo.Name = "btnNuevaMozo";
-            this.btnNuevaMozo.Size = new System.Drawing.Size(100, 93);
-            this.btnNuevaMozo.TabIndex = 2;
-            this.btnNuevaMozo.UseVisualStyleBackColor = true;
-            this.btnNuevaMozo.Click += new System.EventHandler(this.btnNuevaMozo_Click);
+            this.btnEliminarTurno.BackgroundImage = global::Negocio.Properties.Resources.Picture11;
+            this.btnEliminarTurno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEliminarTurno.FlatAppearance.BorderSize = 0;
+            this.btnEliminarTurno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarTurno.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarTurno.ForeColor = System.Drawing.Color.Gold;
+            this.btnEliminarTurno.Location = new System.Drawing.Point(738, 504);
+            this.btnEliminarTurno.Name = "btnEliminarTurno";
+            this.btnEliminarTurno.Size = new System.Drawing.Size(100, 93);
+            this.btnEliminarTurno.TabIndex = 4;
+            this.btnEliminarTurno.UseVisualStyleBackColor = true;
+            this.btnEliminarTurno.Click += new System.EventHandler(this.btnEliminarTurno_Click);
             // 
-            // label1
+            // btnModificarTurno
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(215, 117);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 16);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Fecha de Nacimiento";
+            this.btnModificarTurno.BackgroundImage = global::Negocio.Properties.Resources.Picture12;
+            this.btnModificarTurno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnModificarTurno.FlatAppearance.BorderSize = 0;
+            this.btnModificarTurno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificarTurno.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarTurno.ForeColor = System.Drawing.Color.Gold;
+            this.btnModificarTurno.Location = new System.Drawing.Point(373, 504);
+            this.btnModificarTurno.Name = "btnModificarTurno";
+            this.btnModificarTurno.Size = new System.Drawing.Size(100, 93);
+            this.btnModificarTurno.TabIndex = 3;
+            this.btnModificarTurno.UseVisualStyleBackColor = true;
+            this.btnModificarTurno.Click += new System.EventHandler(this.btnModificarTurno_Click);
             // 
-            // dateTimePicker1
+            // btnNuevoTurno
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(218, 145);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 22);
-            this.dateTimePicker1.TabIndex = 27;
+            this.btnNuevoTurno.BackgroundImage = global::Negocio.Properties.Resources.Picture10;
+            this.btnNuevoTurno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNuevoTurno.FlatAppearance.BorderSize = 0;
+            this.btnNuevoTurno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevoTurno.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoTurno.ForeColor = System.Drawing.Color.Gold;
+            this.btnNuevoTurno.Location = new System.Drawing.Point(12, 504);
+            this.btnNuevoTurno.Name = "btnNuevoTurno";
+            this.btnNuevoTurno.Size = new System.Drawing.Size(100, 93);
+            this.btnNuevoTurno.TabIndex = 2;
+            this.btnNuevoTurno.UseVisualStyleBackColor = true;
+            this.btnNuevoTurno.Click += new System.EventHandler(this.btnNuevoTurno_Click);
+            // 
+            // dgvMozosEnturno
+            // 
+            this.dgvMozosEnturno.AllowUserToAddRows = false;
+            this.dgvMozosEnturno.AllowUserToDeleteRows = false;
+            this.dgvMozosEnturno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMozosEnturno.Location = new System.Drawing.Point(536, 19);
+            this.dgvMozosEnturno.Name = "dgvMozosEnturno";
+            this.dgvMozosEnturno.ReadOnly = true;
+            this.dgvMozosEnturno.RowHeadersWidth = 51;
+            this.dgvMozosEnturno.RowTemplate.Height = 24;
+            this.dgvMozosEnturno.Size = new System.Drawing.Size(284, 146);
+            this.dgvMozosEnturno.TabIndex = 5;
             // 
             // frmTurnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 609);
-            this.Controls.Add(this.btnEliminarMozo);
-            this.Controls.Add(this.btnModificarMozo);
-            this.Controls.Add(this.btnNuevaMozo);
-            this.Controls.Add(this.grpMozos);
-            this.Controls.Add(this.dgvMozos);
+            this.Controls.Add(this.btnEliminarTurno);
+            this.Controls.Add(this.btnModificarTurno);
+            this.Controls.Add(this.btnNuevoTurno);
+            this.Controls.Add(this.grpTurnos);
+            this.Controls.Add(this.dgvTurnos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTurnos";
             this.Text = "Mesas";
-            this.Load += new System.EventHandler(this.frmMozos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMozos)).EndInit();
-            this.grpMozos.ResumeLayout(false);
-            this.grpMozos.PerformLayout();
+            this.Load += new System.EventHandler(this.frmTurnos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).EndInit();
+            this.grpTurnos.ResumeLayout(false);
+            this.grpTurnos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMozosEnturno)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvMozos;
-        private System.Windows.Forms.GroupBox grpMozos;
-        private System.Windows.Forms.Label lblRanking;
-        private System.Windows.Forms.ProgressBar prgBaRanking;
-        private System.Windows.Forms.Label lblPuntuación;
-        private System.Windows.Forms.Button btnNuevaMozo;
-        private System.Windows.Forms.Button btnModificarMozo;
-        private System.Windows.Forms.Button btnEliminarMozo;
-        private System.Windows.Forms.TextBox txtLegajo;
-        private System.Windows.Forms.Label lblLegajo;
-        private System.Windows.Forms.TextBox txtDNI;
-        private System.Windows.Forms.Label lblDNI;
-        private System.Windows.Forms.Label lblFechaNacimiento;
-        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridView dgvTurnos;
+        private System.Windows.Forms.GroupBox grpTurnos;
+        private System.Windows.Forms.Label lblCantMozos;
+        private System.Windows.Forms.ProgressBar prgCantidad;
+        private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.Button btnNuevoTurno;
+        private System.Windows.Forms.Button btnModificarTurno;
+        private System.Windows.Forms.Button btnEliminarTurno;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.TextBox txtNombreTurno;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblHoraInicio;
+        private System.Windows.Forms.DateTimePicker dtpHoraInicio;
+        private System.Windows.Forms.Label lblHoraFin;
+        private System.Windows.Forms.DateTimePicker dtpHoraFin;
+        private System.Windows.Forms.DataGridView dgvMozosEnturno;
     }
 }

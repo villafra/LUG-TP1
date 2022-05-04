@@ -72,6 +72,18 @@ namespace Negocio
             }
             return ListadeTurnos;
         }
+
+        public List<Mozo> FillListadoMozosEnTurno(Turno turno)
+        {
+            string query = @"select * from Turno inner join Mozo on Mozo.Codigo_Turno=Turno.Codigo_Turno where Turno.Codigo_Turno=" + turno.Codigo;
+            turno.ListaMozos.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                Mozo mozo = new Mozo(Convert.ToInt32(row[4].ToString()), Convert.ToInt32(row[5].ToString()), row[6].ToString(), row[7].ToString(), Convert.ToDateTime(row[8].ToString()), BuscarTurno(Convert.ToInt32(row[9].ToString())));
+                turno.ListaMozos.Add(mozo);
+            }
+            return turno.ListaMozos;
+        }
         public void FillTurnos()
         {
             string query = @"Select * from Turno";
@@ -136,19 +148,52 @@ namespace Negocio
             }
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        public void DGVTurnos(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Código";
+            dgv.Columns[1].HeaderText = "Nombre del Turno";
+            dgv.Columns[2].HeaderText = "Hora de Inicio";
+            dgv.Columns[2].DefaultCellStyle.Format = "t";
+            dgv.Columns[2].HeaderText = "Hora de Fin";
+            dgv.Columns[3].DefaultCellStyle.Format = "t";
+
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public void DGVTurnosMozos(DataGridView dgv)
+        {
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[5].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
         #endregion
+
+        #region Calculos Grales
+
         public Turno BuscarTurno(int Codigoturno)
         {
             Turno turno = ListadeTurnos.Find(x => x.Codigo == Codigoturno);
             return turno;
         }
-        public double Promedio(Mozo verMozo)
+
+        public int CantidadMozosXTurno(Turno turno)
         {
-            string query = @"select avg(Mozo_Puntuacion.Puntuacion) as Promedio from Mozo_Puntuacion inner join Mozo on Legajo=Legajo_Mozo where mozo.Legajo = " + verMozo.Legajo;
-            double promedio = Convert.ToDouble(conexion.PromedioRanking(verMozo.Legajo));
-            return promedio;
+            return conexion.CantidadMozosEnTurno(turno.Codigo);
 
         }
+
+        #endregion
         public string ABMMesa(string accion, Mesa mesa)
         {
             string query;
@@ -181,6 +226,24 @@ namespace Negocio
             else
             {
                 query = @"Delete from Mozo where [Legajo]=" + mozo.Legajo;
+            }
+            return query;
+        }
+
+        public string ABMTurno(string accion, Turno turno)
+        {
+            string query;
+            if (accion == "Alta")
+            {
+                query = @"Insert into Turno ([Nombre Turno], [Hora Inicio], [Hora Fin]) values ( '" + turno.NombreTurno + "','" + turno.HoraInicio + "','" + turno.HoraFin + "')";
+            }
+            else if (accion == "Modificar")
+            {
+                query = @"Update Turno set [Nombre Turno]= '" + turno.NombreTurno + "', [Hora Inicio]= '" + turno.HoraInicio.ToString("HH:mm") + "', [Hora Fin]= '" + turno.HoraFin.ToString("HH:mm") + "' where Codigo_Turno= " + turno.Codigo;
+            }
+            else
+            {
+                query = @"Delete from Turno where [Codigo_Turno]=" + turno.Codigo;
             }
             return query;
         }
