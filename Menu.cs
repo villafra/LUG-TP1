@@ -96,5 +96,53 @@ namespace LUG_TP1
                 Formatear.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void IngredientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmIngredientes);
+            if (frm != null)
+            {
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmIngredientes();
+
+                Formatear.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void PlatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmPlatos);
+            if (frm != null)
+            {
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmPlatos();
+
+                Formatear.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void BebidasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmBebidas);
+            if (frm != null)
+            {
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmBebidas();
+
+                Formatear.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }
