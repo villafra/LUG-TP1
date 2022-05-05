@@ -31,5 +31,13 @@ namespace Estructura
             Estado = estado;
             CantidadComensales = cantidadComensales;
         }
+
+        public Mesa(int codigo, int nroDeMesa, int capacidad, string estado)
+        {
+            Codigo = codigo;
+            NroDeMesa = nroDeMesa;
+            Capacidad = capacidad;
+            Estado = estado;
+        }
     }
 }

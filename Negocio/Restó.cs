@@ -73,6 +73,18 @@ namespace Negocio
             return ListadeTurnos;
         }
 
+        public List<Ingrediente> QueryIngredientes()
+        {
+            string query = @"Select * from Ingrediente";
+            ListadeIngredientes.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                Ingrediente nuevoIngrediente = new Ingrediente(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), Convert.ToBoolean(row[3].ToString()), row[4].ToString(), Convert.ToInt32(row[5].ToString()));
+                ListadeIngredientes.Add(nuevoIngrediente);
+            }
+            return ListadeIngredientes;
+        }
+
         public List<Mozo> FillListadoMozosEnTurno(Turno turno)
         {
             string query = @"select * from Turno inner join Mozo on Mozo.Codigo_Turno=Turno.Codigo_Turno where Turno.Codigo_Turno=" + turno.Codigo;
@@ -155,7 +167,7 @@ namespace Negocio
             dgv.Columns[1].HeaderText = "Nombre del Turno";
             dgv.Columns[2].HeaderText = "Hora de Inicio";
             dgv.Columns[2].DefaultCellStyle.Format = "t";
-            dgv.Columns[2].HeaderText = "Hora de Fin";
+            dgv.Columns[3].HeaderText = "Hora de Fin";
             dgv.Columns[3].DefaultCellStyle.Format = "t";
 
             foreach (DataGridViewColumn columns in dgv.Columns)
@@ -170,6 +182,22 @@ namespace Negocio
             dgv.Columns[0].Visible = false;
             dgv.Columns[2].Visible = false;
             dgv.Columns[5].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public void DGVIngredientes(DataGridView dgv)
+        {
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[1].HeaderText = "Ingrediente";
+            dgv.Columns[2].HeaderText = "Tipo";
+            dgv.Columns[3].HeaderText = "Frío?";
+            dgv.Columns[4].HeaderText = "UM";
+            dgv.Columns[5].HeaderText = "Stock Actual";
+
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -203,7 +231,7 @@ namespace Negocio
             }
             else if (accion == "Modificar")
             {
-                query = @"Update Mesa set [Nro_Mesa]= " + mesa.NroDeMesa + ", Capacidad= " + mesa.Capacidad + ", Estado= '" + mesa.Estado + "', CantidadComensales= " + mesa.CantidadComensales + "where [Id_Mesa]= " + mesa.Codigo; 
+                query = @"Update Mesa set [Nro_Mesa]= " + mesa.NroDeMesa + ", Capacidad= " + mesa.Capacidad + ", Estado= '" + mesa.Estado + "' where [Id_Mesa]= " + mesa.Codigo; 
             }
             else
             {
@@ -244,6 +272,24 @@ namespace Negocio
             else
             {
                 query = @"Delete from Turno where [Codigo_Turno]=" + turno.Codigo;
+            }
+            return query;
+        }
+
+        public string ABMIngrediente(string accion, Ingrediente ingrediente)
+        {
+            string query;
+            if (accion == "Alta")
+            {
+                query = @"Insert into Ingrediente (Nombre, Tipo, Refrigeracion, Unidad_Medida, Stock) values( '" + ingrediente.Nombre + "','" + ingrediente.Tipo + "'," +  ingrediente.DevolverRefrigeracion(ingrediente) + ",'" + ingrediente.UnidadMedida + "'," + ingrediente.Stock + ")";
+            }
+            else if (accion == "Modificar")
+            {
+                query = @"Update Ingrediente set Nombre= '" + ingrediente.Nombre + "', Tipo= '" + ingrediente.Tipo + "', Refrigeracion= " + ingrediente.DevolverRefrigeracion(ingrediente) + " where Codigo_Ingrediente= " + ingrediente.Codigo;
+            }
+            else
+            {
+                query = @"Delete from Ingrediente where [Codigo_Ingrediente]=" + ingrediente.Codigo;
             }
             return query;
         }

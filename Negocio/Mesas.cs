@@ -69,14 +69,14 @@ namespace Negocio
 
         private void btnModificarMesa_Click(object sender, EventArgs e)
         {
-            Mesa ModificarMesa = new Mesa(Int32.Parse(txtCodigoMesa.Text), Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text, 0);
+            Mesa ModificarMesa = new Mesa(Int32.Parse(txtCodigoMesa.Text), Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text);
             restó.ABMAction(restó.ABMMesa("Modificar", ModificarMesa));
             ActualizarGrid();
         }
 
         private void btnEliminarMesa_Click(object sender, EventArgs e)
         {
-            Mesa EliminarMesa = new Mesa(Int32.Parse(txtCodigoMesa.Text), Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text, 0);
+            Mesa EliminarMesa = new Mesa(Int32.Parse(txtCodigoMesa.Text), Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text);
             restó.ABMAction(restó.ABMMesa("Eliminar", EliminarMesa));
             ActualizarGrid();
         }

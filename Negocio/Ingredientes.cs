@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Aspecto;
 using Estructura;
 using Conexión;
+using Cocina;
 
 namespace Negocio
 {
@@ -19,7 +20,6 @@ namespace Negocio
         public frmIngredientes()
         {
             InitializeComponent();
-            restó.FillTurnos();
             Formatear.FormatearDGV(dgvIngredientes);
             Formatear.FormatearGRP(grpIngredientes);
             Formatear.FormatearDGV(dgvIngredientesPlato);
@@ -27,9 +27,10 @@ namespace Negocio
             
         }
 
-        private void btnNuevoTurno_Click(object sender, EventArgs e)
+        private void btnNuevoIngrediente_Click(object sender, EventArgs e)
         {
-            //restó.ABMAction(restó.ABMTurno("Alta",nuevoTurno));
+            Ingrediente nuevoIngrediente = new Ingrediente(txtNombre.Text, txtTipo.Text, Refrigeracion(rdbSi), txtUM.Text, Int32.Parse(txtStock.Text));
+            restó.ABMAction(restó.ABMIngrediente("Alta",nuevoIngrediente));
             ActualizarGrid();
 
         }
@@ -40,41 +41,44 @@ namespace Negocio
             
         }
 
-        private void dgvTurnos_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvIngredientes_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                //Turno VerTurno = (Turno)dgvIngredientes.SelectedRows[0].DataBoundItem;
-                //txtCodigo.Text = VerTurno.Codigo.ToString();
-                //txtNombreTurno.Text = VerTurno.NombreTurno;
-                //dtpHoraInicio.Value = VerTurno.HoraInicio;
-                //dtpHoraFin.Value = VerTurno.HoraFin;
-                //lblCantidad.Text = restó.CantidadMozosXTurno(VerTurno).ToString();
-                //prgCantidad.Value = restó.CantidadMozosXTurno(VerTurno);
-                //dgvMozosEnturno.DataSource = null;
-                //dgvMozosEnturno.DataSource = restó.FillListadoMozosEnTurno(VerTurno);
-                //restó.DGVTurnosMozos(dgvMozosEnturno);
+                Ingrediente VerIngrediente = (Ingrediente)dgvIngredientes.SelectedRows[0].DataBoundItem;
+                txtCodigo.Text = VerIngrediente.Codigo.ToString();
+                txtNombre.Text = VerIngrediente.Nombre;
+                txtTipo.Text = VerIngrediente.Tipo;
+                txtUM.Text = VerIngrediente.UnidadMedida;
+                txtStock.Text = VerIngrediente.Stock.ToString();
             }
             catch { }
         }
 
-        private void btnModificarTurno_Click(object sender, EventArgs e)
+        private void btnModificarIngrediente_Click(object sender, EventArgs e)
         {
-            //restó.ABMAction(restó.ABMTurno("Modificar", modificarTurno));
+            Ingrediente modificarIngrediente = new Ingrediente(Int32.Parse(txtCodigo.Text), txtNombre.Text, txtTipo.Text, Refrigeracion(rdbSi), txtUM.Text, Int32.Parse(txtStock.Text));
+            restó.ABMAction(restó.ABMIngrediente("Modificar", modificarIngrediente));
             ActualizarGrid();
         }
 
-        private void btnEliminarTurno_Click(object sender, EventArgs e)
+        private void btnEliminarIngrediente_Click(object sender, EventArgs e)
         {
-            //restó.ABMAction(restó.ABMTurno("Eliminar", eliminarTurno));
+            Ingrediente eliminarIngrediente = new Ingrediente(Int32.Parse(txtCodigo.Text), txtNombre.Text, txtTipo.Text, Refrigeracion(rdbSi), txtUM.Text, Int32.Parse(txtStock.Text));
+            restó.ABMAction(restó.ABMIngrediente("Eliminar", eliminarIngrediente));
             ActualizarGrid();
         }
 
+        public bool Refrigeracion(RadioButton si)
+        {
+            if (si.Checked) return true;
+            else return false;
+        }
         private void ActualizarGrid()
         {
             dgvIngredientes.DataSource = null;
-            dgvIngredientes.DataSource = restó.QueryTurnos();
-            restó.DGVTurnos(dgvIngredientes);
+            dgvIngredientes.DataSource = restó.QueryIngredientes();
+            restó.DGVIngredientes(dgvIngredientes);
         }
 
        
