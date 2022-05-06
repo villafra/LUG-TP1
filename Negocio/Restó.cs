@@ -107,6 +107,17 @@ namespace Negocio
             }
         }
         
+        public List<Plato>ListadePlatosConIngrediente(Ingrediente ingrediente)
+        {
+            string query = @"Select * from Ingrediente inner join Plato on Ingrediente_Plato=Codigo_Ingrediente where Codigo_Ingrediente = " + ingrediente.Codigo;
+            ingrediente.ListadePlatos.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                Plato plato = new Plato(Convert.ToInt32(row[6].ToString()), row[7].ToString(), row[8].ToString(), row[9].ToString());
+                ingrediente.ListadePlatos.Add(plato);
+            }
+            return ingrediente.ListadePlatos;
+        }
         public List<string> ListarTurnos()
         {
             List<string> array = new List<string>();

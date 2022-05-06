@@ -15,6 +15,8 @@ namespace Cocina
         public string UnidadMedida { get; set; }
         public int Stock { get; set; }
 
+        public List<Plato> ListadePlatos = new List<Plato>();
+
         public Ingrediente(int codigo, string nombre, string tipo, bool refrigeración, string unidadMedida, int stock)
         {
             Codigo = codigo;
