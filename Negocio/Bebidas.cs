@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aspecto;
 using Estructura;
-using Conexión;
+using Cocina;
 
 namespace Negocio
 {
@@ -20,66 +20,91 @@ namespace Negocio
         {
             InitializeComponent();
             restó.FillTurnos();
-            Formatear.FormatearDGV(dgvTurnos);
-            Formatear.FormatearGRP(grpTurnos);
-            Formatear.FormatearDGV(dgvMozosEnturno);
+            Formatear.FormatearDGV(dgvBebidas);
+            Formatear.FormatearGRP(grpBebidas);
             
             
         }
 
-        private void btnNuevoTurno_Click(object sender, EventArgs e)
+        private void btnNuevaBebida_Click(object sender, EventArgs e)
         {
-            Turno nuevoTurno = new Turno(txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Alta",nuevoTurno));
+            ElegirABM("Alta");
             ActualizarGrid();
 
         }
 
-        private void frmTurnos_Load(object sender, EventArgs e)
+        private void frmBebidas_Load(object sender, EventArgs e)
         {
             ActualizarGrid();
             
         }
 
-        private void dgvTurnos_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvBebidas_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                Turno VerTurno = (Turno)dgvTurnos.SelectedRows[0].DataBoundItem;
-                txtCodigo.Text = VerTurno.Codigo.ToString();
-                txtNombreTurno.Text = VerTurno.NombreTurno;
-                dtpHoraInicio.Value = VerTurno.HoraInicio;
-                dtpHoraFin.Value = VerTurno.HoraFin;
-                lblCantidad.Text = restó.CantidadMozosXTurno(VerTurno).ToString();
-                prgCantidad.Value = restó.CantidadMozosXTurno(VerTurno);
-                dgvMozosEnturno.DataSource = null;
-                dgvMozosEnturno.DataSource = restó.FillListadoMozosEnTurno(VerTurno);
-                restó.DGVTurnosMozos(dgvMozosEnturno);
+                if (dgvBebidas.SelectedRows[0].Cells[2].Value.ToString() == "Alcoholica")
+                {
+                    Bebida_Alcoholica VerBebida = (Bebida_Alcoholica)dgvBebidas.SelectedRows[0].DataBoundItem;
+                    txtCodigo.Text = VerBebida.Codigo.ToString();
+                    txtNombre.Text = VerBebida.Nombre;
+                    txtPrecio.Text = VerBebida.Precio.ToString();
+                    txtABV.Text = VerBebida.GraduaciónAlcoholica.ToString();
+                    comboTipo.Text = VerBebida.Tipo.ToString();
+                    txtPresentacion.Text = VerBebida.Presentación;
+                    lblCantidad.Text = VerBebida.Stock.ToString();
+                    prgCantidad.Value = VerBebida.Stock;
+                }
+                else
+                {
+                    Bebida VerBebida = (Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
+                    txtCodigo.Text = VerBebida.Codigo.ToString();
+                    txtNombre.Text = VerBebida.Nombre;
+                    txtPrecio.Text = VerBebida.Precio.ToString();
+                    comboTipo.Text = VerBebida.Tipo.ToString();
+                    txtPresentacion.Text = VerBebida.Presentación;
+                    lblCantidad.Text = VerBebida.Stock.ToString();
+                    txtABV.Text = "";
+                    prgCantidad.Value = VerBebida.Stock;
+                }
+                
+
+                
             }
             catch { }
         }
 
-        private void btnModificarTurno_Click(object sender, EventArgs e)
+        private void btnModificarBebida_Click(object sender, EventArgs e)
         {
-            Turno modificarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Modificar", modificarTurno));
+            ElegirABM("Modificar");
             ActualizarGrid();
         }
 
-        private void btnEliminarTurno_Click(object sender, EventArgs e)
+        private void btnEliminarBebida_Click(object sender, EventArgs e)
         {
-            Turno eliminarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Eliminar", eliminarTurno));
+            ElegirABM("Eliminar");
             ActualizarGrid();
         }
 
         private void ActualizarGrid()
         {
-            dgvTurnos.DataSource = null;
-            dgvTurnos.DataSource = restó.QueryTurnos();
-            restó.DGVTurnos(dgvTurnos);
+            dgvBebidas.DataSource = null;
+            dgvBebidas.DataSource = restó.QueryBebidas();
+            restó.DGVBebidas(dgvBebidas);
         }
 
-       
+        private void ElegirABM(string accion)
+        {
+            if (comboTipo.SelectedItem.ToString() != "Alcoholica")
+            {
+                Bebida bebida = new Bebida(Int32.Parse(txtCodigo.Text),txtNombre.Text, comboTipo.SelectedItem.ToString(), txtPresentacion.Text, Convert.ToDouble(txtPrecio.Text), Int32.Parse(lblCantidad.Text));
+                restó.ABMAction(restó.ABMBebida(accion, bebida));
+            }
+            else
+            {
+                Bebida_Alcoholica bebida = new Bebida_Alcoholica(Int32.Parse(txtCodigo.Text), txtNombre.Text, comboTipo.SelectedItem.ToString(), txtPresentacion.Text, Convert.ToDouble(txtPrecio.Text), Int32.Parse(lblCantidad.Text), Convert.ToDouble(txtABV.Text));
+                restó.ABMAction(restó.ABMBebidaAlcoholica(accion, bebida));
+            }
+        }
     }
 }

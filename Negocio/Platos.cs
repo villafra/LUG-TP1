@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aspecto;
-using Estructura;
-using Conexión;
+using Cocina;
 
 namespace Negocio
 {
@@ -20,64 +19,63 @@ namespace Negocio
         {
             InitializeComponent();
             restó.FillTurnos();
-            Formatear.FormatearDGV(dgvTurnos);
-            Formatear.FormatearGRP(grpTurnos);
-            Formatear.FormatearDGV(dgvMozosEnturno);
+            Formatear.FormatearDGV(dgvPlatos);
+            Formatear.FormatearGRP(grpPlatos);
+            Formatear.FormatearDGV(dgvPedidosConPlat);
             
             
         }
 
-        private void btnNuevoTurno_Click(object sender, EventArgs e)
+        private void btnNuevoPlato_Click(object sender, EventArgs e)
         {
-            Turno nuevoTurno = new Turno(txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Alta",nuevoTurno));
+            Plato nuevoPlato = new Plato(txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString());
+            restó.ABMAction(restó.ABMPlato("Alta",nuevoPlato));
             ActualizarGrid();
 
         }
 
-        private void frmTurnos_Load(object sender, EventArgs e)
+        private void frmPlatos_Load(object sender, EventArgs e)
         {
             ActualizarGrid();
             
         }
 
-        private void dgvTurnos_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvPlatos_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                Turno VerTurno = (Turno)dgvTurnos.SelectedRows[0].DataBoundItem;
-                txtCodigo.Text = VerTurno.Codigo.ToString();
-                txtNombreTurno.Text = VerTurno.NombreTurno;
-                dtpHoraInicio.Value = VerTurno.HoraInicio;
-                dtpHoraFin.Value = VerTurno.HoraFin;
-                lblCantidad.Text = restó.CantidadMozosXTurno(VerTurno).ToString();
-                prgCantidad.Value = restó.CantidadMozosXTurno(VerTurno);
-                dgvMozosEnturno.DataSource = null;
-                dgvMozosEnturno.DataSource = restó.FillListadoMozosEnTurno(VerTurno);
-                restó.DGVTurnosMozos(dgvMozosEnturno);
+                Plato VerPlato = (Plato)dgvPlatos.SelectedRows[0].DataBoundItem;
+                txtCodigo.Text = VerPlato.Codigo.ToString();
+                txtNombre.Text = VerPlato.Nombre;
+                ComboTipo.Text = VerPlato.Tipo; 
+                ComboClase.Text = VerPlato.Clase;
+                lblCantidad.Text= restó.PromedioPlatosEnPedido(VerPlato).ToString();
+                dgvPedidosConPlat.DataSource = null;
+                dgvPedidosConPlat.DataSource = restó.FillPedidosconPlato(VerPlato);
+                restó.DGVPedidosXPlatos(dgvPedidosConPlat);
             }
             catch { }
         }
 
-        private void btnModificarTurno_Click(object sender, EventArgs e)
+        private void btnModificarPlato_Click(object sender, EventArgs e)
         {
-            Turno modificarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Modificar", modificarTurno));
+            Plato modificarPlato = new Plato(Int32.Parse(txtCodigo.Text),txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString());
+            restó.ABMAction(restó.ABMPlato("Modificar", modificarPlato));
             ActualizarGrid();
         }
 
-        private void btnEliminarTurno_Click(object sender, EventArgs e)
+        private void btnEliminarPlato_Click(object sender, EventArgs e)
         {
-            Turno eliminarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Eliminar", eliminarTurno));
+            Plato eliminarPlato = new Plato(Int32.Parse(txtCodigo.Text), txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString());
+            restó.ABMAction(restó.ABMPlato("Eliminar", eliminarPlato));
             ActualizarGrid();
         }
 
         private void ActualizarGrid()
         {
-            dgvTurnos.DataSource = null;
-            dgvTurnos.DataSource = restó.QueryTurnos();
-            restó.DGVTurnos(dgvTurnos);
+            dgvPlatos.DataSource = null;
+            dgvPlatos.DataSource = restó.QueryPlatos();
+            restó.DGVPlatos(dgvPlatos);
         }
 
        

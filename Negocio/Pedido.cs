@@ -18,6 +18,17 @@ namespace Negocio
         public List<Bebida> Bebidas { get; set; }
         public string Observaciones { get; set; }
         public decimal Monto { get; set; }
+        public bool Activo { get; set; }
+
+        public Pedido(Mesa codigoMesa, Mozo codigoMozo, DateTime fechaHoradeInicio, string observaciones, decimal monto, bool activo)
+        {
+            CodigoMesa = codigoMesa;
+            CodigoMozo = codigoMozo;
+            FechaHoradeInicio = fechaHoradeInicio;
+            Observaciones = observaciones;
+            Monto = monto;
+            Activo = activo;
+        }
 
         public Pedido(int numeroPedido, Mesa codigoMesa, Mozo codigoMozo, DateTime fechaHoradeInicio, string observaciones, decimal monto)
         {
@@ -29,12 +40,24 @@ namespace Negocio
             Monto = monto;
         }
 
-        public Pedido(int numeroPedido, DateTime fechaHoradeInicio, string observaciones, decimal monto)
+        public Pedido(int numeroPedido, DateTime fechaHoradeInicio, string observaciones, decimal monto, bool activo)
         {
             NumeroPedido = numeroPedido;
             FechaHoradeInicio = fechaHoradeInicio;
             Observaciones = observaciones;
             Monto = monto;
+            Activo = activo;
+        }
+
+        public Pedido(int numeroPedido, Mesa codigoMesa, Mozo codigoMozo, DateTime fechaHoradeInicio, string observaciones, decimal monto, bool activo) 
+        {
+            NumeroPedido = numeroPedido;
+            CodigoMesa = codigoMesa;
+            CodigoMozo = codigoMozo; 
+            FechaHoradeInicio = fechaHoradeInicio;
+            Observaciones = observaciones;
+            Monto = monto;
+            Activo = activo;
         }
     }
 }

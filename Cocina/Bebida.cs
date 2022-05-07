@@ -14,13 +14,23 @@ namespace Cocina
         public string Presentación { get; set; }
         public double Precio { get; set; }
         public int Stock { get; set; }
-        public Bebida(int codigo, string nombre, string tipo, string presentación, double precio)
+        public Bebida(int codigo, string nombre, string tipo, string presentación, double precio, int stock)
         {
             Codigo = codigo;
             Nombre = nombre;
             Tipo = tipo;
             Presentación = presentación;
             Precio = precio;
+            Stock = stock;
+        }
+
+        public Bebida(string nombre, string tipo, string presentación, double precio, int stock)
+        {
+            Nombre = nombre;
+            Tipo = tipo;
+            Presentación = presentación;
+            Precio = precio;
+            Stock = stock;
         }
 
         public void AgregarStock(int cantidad)

@@ -61,12 +61,6 @@
     <Compile Include="Layout.Designer.cs">
       <DependentUpon>Layout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ingredientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ingredientes.Designer.cs">
-      <DependentUpon>Ingredientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Turnos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,9 +116,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Layout.resx">
       <DependentUpon>Layout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ingredientes.resx">
-      <DependentUpon>Ingredientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Turnos.resx">
       <DependentUpon>Turnos.cs</DependentUpon>

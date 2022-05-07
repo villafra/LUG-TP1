@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Bebida Alcoholica.cs" />
     <Compile Include="Bebida.cs" />
-    <Compile Include="Ingrediente.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="Plato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -42,28 +42,13 @@ namespace Conexión
             return table;
         }
 
-        public double PromedioRanking(int legajo)
-        {
-            AbrirConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"select avg(Mozo_Puntuacion.Puntuacion) as Promedio from Mozo_Puntuacion inner join Mozo on Legajo=Legajo_Mozo where mozo.Legajo = " + legajo;
-            cmd.Connection = conexion;
-            SqlDataReader reader = cmd.ExecuteReader();
-            double promedio=0;
-            while (reader.Read())
-            {
-                promedio = Convert.ToDouble(reader[0]);
-            }
-             return promedio;
-        }
 
-        public int CantidadMozosEnTurno(int codigo)
+        public int Cantidades(string query)
         {
             AbrirConexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"select count(Mozo.Codigo_Turno) as Cantidad from Turno inner join Mozo on Mozo.Codigo_Turno=Turno.Codigo_Turno where Turno.Codigo_Turno= " + codigo;
+            cmd.CommandText = query;
             cmd.Connection = conexion;
             SqlDataReader reader = cmd.ExecuteReader();
             int cantidad = 0;
@@ -73,6 +58,7 @@ namespace Conexión
             }
             return cantidad;
         }
+
         public bool EscribirDatos(string query)
         {
             try

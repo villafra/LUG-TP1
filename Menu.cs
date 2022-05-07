@@ -97,22 +97,7 @@ namespace LUG_TP1
             }
         }
 
-        private void IngredientesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmIngredientes);
-            if (frm != null)
-            {
-                frm.BringToFront();
-                return;
-            }
-            else
-            {
-                frm = new frmIngredientes();
-
-                Formatear.AbrirNuevoForm(this, frm);
-            }
-        }
-
+      
         private void PlatosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmPlatos);
