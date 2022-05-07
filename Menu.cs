@@ -21,7 +21,9 @@ namespace LUG_TP1
             Formatear.FormatearForm(this, panelMenuIzq, this.Width, this.Height);
             frmBienvenida frm = new frmBienvenida();
             Formatear.AbrirNuevoForm(this, frm);
-            
+            frmLogin login = new frmLogin();
+            login.ShowDialog();
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

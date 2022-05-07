@@ -39,6 +39,16 @@ namespace Aspecto
             FormatearBotonEnPanel(panel);
             FormatearMenuStrip(formulario);
         };
+
+        public static Action<Form, GroupBox, int, int> FormatearLogin = (formulario, grp, Width, Height) =>
+        {
+            formulario.FormBorderStyle = new FormBorderStyle();
+            formulario.BackColor = Color.FromArgb(46, 51, 73);
+            formulario.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
+            formulario.AutoScroll = true;
+            FormatearGRP(grp);
+        };
+
         public static Action<Form> FormatearFormHijo = (formulario) =>
         {
             formulario.BackColor = Color.FromArgb(46, 51, 73);

@@ -16,6 +16,7 @@ namespace LUG_TP1
         public frmBienvenida()
         {
             InitializeComponent();
+           
         }
     }
 }
