@@ -12,9 +12,9 @@ namespace Cocina
         public string Nombre { get; set; }
         public string Tipo { get; set; }
         public string Presentación { get; set; }
-        public double Precio { get; set; }
+        public decimal Precio { get; set; }
         public int Stock { get; set; }
-        public Bebida(int codigo, string nombre, string tipo, string presentación, double precio, int stock)
+        public Bebida(int codigo, string nombre, string tipo, string presentación, decimal precio, int stock)
         {
             Codigo = codigo;
             Nombre = nombre;
@@ -24,7 +24,7 @@ namespace Cocina
             Stock = stock;
         }
 
-        public Bebida(string nombre, string tipo, string presentación, double precio, int stock)
+        public Bebida(string nombre, string tipo, string presentación, decimal precio, int stock)
         {
             Nombre = nombre;
             Tipo = tipo;

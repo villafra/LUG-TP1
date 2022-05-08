@@ -131,5 +131,37 @@ namespace LUG_TP1
                 Formatear.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void btnReservas_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is Reservas);
+            if (frm != null)
+            {
+                
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new Reservas();
+                Formatear.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void btnPedidos_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is Pedidos);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new Pedidos();
+                Formatear.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

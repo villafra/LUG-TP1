@@ -30,6 +30,8 @@
         {
             this.dgvPlatos = new System.Windows.Forms.DataGridView();
             this.grpPlatos = new System.Windows.Forms.GroupBox();
+            this.ComboClase = new System.Windows.Forms.ComboBox();
+            this.ComboTipo = new System.Windows.Forms.ComboBox();
             this.lblClase = new System.Windows.Forms.Label();
             this.lblTipo = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -43,8 +45,8 @@
             this.btnEliminarPlato = new System.Windows.Forms.Button();
             this.btnModificarPlato = new System.Windows.Forms.Button();
             this.btnNuevoPlato = new System.Windows.Forms.Button();
-            this.ComboTipo = new System.Windows.Forms.ComboBox();
-            this.ComboClase = new System.Windows.Forms.ComboBox();
+            this.txtCosto = new System.Windows.Forms.TextBox();
+            this.lblCosto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).BeginInit();
             this.grpPlatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosConPlat)).BeginInit();
@@ -66,6 +68,8 @@
             // 
             // grpPlatos
             // 
+            this.grpPlatos.Controls.Add(this.txtCosto);
+            this.grpPlatos.Controls.Add(this.lblCosto);
             this.grpPlatos.Controls.Add(this.ComboClase);
             this.grpPlatos.Controls.Add(this.ComboTipo);
             this.grpPlatos.Controls.Add(this.lblClase);
@@ -84,10 +88,35 @@
             this.grpPlatos.TabStop = false;
             this.grpPlatos.Text = "Platos";
             // 
+            // ComboClase
+            // 
+            this.ComboClase.FormattingEnabled = true;
+            this.ComboClase.Items.AddRange(new object[] {
+            "Gral.",
+            "Vegetariano",
+            "Vegano"});
+            this.ComboClase.Location = new System.Drawing.Point(246, 144);
+            this.ComboClase.Name = "ComboClase";
+            this.ComboClase.Size = new System.Drawing.Size(215, 24);
+            this.ComboClase.TabIndex = 20;
+            // 
+            // ComboTipo
+            // 
+            this.ComboTipo.FormattingEnabled = true;
+            this.ComboTipo.Items.AddRange(new object[] {
+            "Entrada",
+            "Plato Principal",
+            "Guarnición",
+            "Postre"});
+            this.ComboTipo.Location = new System.Drawing.Point(37, 142);
+            this.ComboTipo.Name = "ComboTipo";
+            this.ComboTipo.Size = new System.Drawing.Size(173, 24);
+            this.ComboTipo.TabIndex = 19;
+            // 
             // lblClase
             // 
             this.lblClase.AutoSize = true;
-            this.lblClase.Location = new System.Drawing.Point(328, 114);
+            this.lblClase.Location = new System.Drawing.Point(256, 114);
             this.lblClase.Name = "lblClase";
             this.lblClase.Size = new System.Drawing.Size(42, 16);
             this.lblClase.TabIndex = 17;
@@ -224,30 +253,22 @@
             this.btnNuevoPlato.UseVisualStyleBackColor = true;
             this.btnNuevoPlato.Click += new System.EventHandler(this.btnNuevoPlato_Click);
             // 
-            // ComboTipo
+            // txtCosto
             // 
-            this.ComboTipo.FormattingEnabled = true;
-            this.ComboTipo.Items.AddRange(new object[] {
-            "Entrada",
-            "Plato Principal",
-            "Guarnición",
-            "Postre"});
-            this.ComboTipo.Location = new System.Drawing.Point(37, 142);
-            this.ComboTipo.Name = "ComboTipo";
-            this.ComboTipo.Size = new System.Drawing.Size(216, 24);
-            this.ComboTipo.TabIndex = 19;
+            this.txtCosto.Location = new System.Drawing.Point(482, 146);
+            this.txtCosto.Name = "txtCosto";
+            this.txtCosto.Size = new System.Drawing.Size(118, 22);
+            this.txtCosto.TabIndex = 22;
+            this.txtCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ComboClase
+            // lblCosto
             // 
-            this.ComboClase.FormattingEnabled = true;
-            this.ComboClase.Items.AddRange(new object[] {
-            "Gral.",
-            "Vegetariano",
-            "Vegano"});
-            this.ComboClase.Location = new System.Drawing.Point(318, 144);
-            this.ComboClase.Name = "ComboClase";
-            this.ComboClase.Size = new System.Drawing.Size(249, 24);
-            this.ComboClase.TabIndex = 20;
+            this.lblCosto.AutoSize = true;
+            this.lblCosto.Location = new System.Drawing.Point(479, 114);
+            this.lblCosto.Name = "lblCosto";
+            this.lblCosto.Size = new System.Drawing.Size(42, 16);
+            this.lblCosto.TabIndex = 21;
+            this.lblCosto.Text = "Costo";
             // 
             // frmPlatos
             // 
@@ -263,6 +284,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPlatos";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmPlatos_Activated);
             this.Load += new System.EventHandler(this.frmPlatos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
             this.grpPlatos.ResumeLayout(false);
@@ -291,5 +313,7 @@
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.ComboBox ComboClase;
         private System.Windows.Forms.ComboBox ComboTipo;
+        private System.Windows.Forms.TextBox txtCosto;
+        private System.Windows.Forms.Label lblCosto;
     }
 }

@@ -60,6 +60,7 @@
             // 
             this.btnExit.BackgroundImage = global::LUG_TP1.Properties.Resources.logout;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Location = new System.Drawing.Point(12, 272);
@@ -105,8 +106,10 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(743, 354);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);

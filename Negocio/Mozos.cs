@@ -80,6 +80,9 @@ namespace Negocio
             restó.DGVMozos(dgvMozos);
         }
 
-       
+        private void frmMozos_Activated(object sender, EventArgs e)
+        {
+            ActualizarGrid();
+        }
     }
 }

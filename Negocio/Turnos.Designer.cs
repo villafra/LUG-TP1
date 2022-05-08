@@ -30,6 +30,7 @@
         {
             this.dgvTurnos = new System.Windows.Forms.DataGridView();
             this.grpTurnos = new System.Windows.Forms.GroupBox();
+            this.dgvMozosEnturno = new System.Windows.Forms.DataGridView();
             this.lblHoraFin = new System.Windows.Forms.Label();
             this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
             this.lblHoraInicio = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.btnEliminarTurno = new System.Windows.Forms.Button();
             this.btnModificarTurno = new System.Windows.Forms.Button();
             this.btnNuevoTurno = new System.Windows.Forms.Button();
-            this.dgvMozosEnturno = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).BeginInit();
             this.grpTurnos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMozosEnturno)).BeginInit();
@@ -84,6 +84,19 @@
             this.grpTurnos.TabIndex = 1;
             this.grpTurnos.TabStop = false;
             this.grpTurnos.Text = "Turnos";
+            // 
+            // dgvMozosEnturno
+            // 
+            this.dgvMozosEnturno.AllowUserToAddRows = false;
+            this.dgvMozosEnturno.AllowUserToDeleteRows = false;
+            this.dgvMozosEnturno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMozosEnturno.Location = new System.Drawing.Point(536, 19);
+            this.dgvMozosEnturno.Name = "dgvMozosEnturno";
+            this.dgvMozosEnturno.ReadOnly = true;
+            this.dgvMozosEnturno.RowHeadersWidth = 51;
+            this.dgvMozosEnturno.RowTemplate.Height = 24;
+            this.dgvMozosEnturno.Size = new System.Drawing.Size(284, 146);
+            this.dgvMozosEnturno.TabIndex = 5;
             // 
             // lblHoraFin
             // 
@@ -230,19 +243,6 @@
             this.btnNuevoTurno.UseVisualStyleBackColor = true;
             this.btnNuevoTurno.Click += new System.EventHandler(this.btnNuevoTurno_Click);
             // 
-            // dgvMozosEnturno
-            // 
-            this.dgvMozosEnturno.AllowUserToAddRows = false;
-            this.dgvMozosEnturno.AllowUserToDeleteRows = false;
-            this.dgvMozosEnturno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMozosEnturno.Location = new System.Drawing.Point(536, 19);
-            this.dgvMozosEnturno.Name = "dgvMozosEnturno";
-            this.dgvMozosEnturno.ReadOnly = true;
-            this.dgvMozosEnturno.RowHeadersWidth = 51;
-            this.dgvMozosEnturno.RowTemplate.Height = 24;
-            this.dgvMozosEnturno.Size = new System.Drawing.Size(284, 146);
-            this.dgvMozosEnturno.TabIndex = 5;
-            // 
             // frmTurnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -256,6 +256,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTurnos";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmTurnos_Activated);
             this.Load += new System.EventHandler(this.frmTurnos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurnos)).EndInit();
             this.grpTurnos.ResumeLayout(false);

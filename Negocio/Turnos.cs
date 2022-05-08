@@ -80,6 +80,9 @@ namespace Negocio
             restó.DGVTurnos(dgvTurnos);
         }
 
-       
+        private void frmTurnos_Activated(object sender, EventArgs e)
+        {
+            ActualizarGrid();
+        }
     }
 }

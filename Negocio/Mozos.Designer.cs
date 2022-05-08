@@ -301,6 +301,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMozos";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmMozos_Activated);
             this.Load += new System.EventHandler(this.frmMozos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMozos)).EndInit();
             this.grpMozos.ResumeLayout(false);

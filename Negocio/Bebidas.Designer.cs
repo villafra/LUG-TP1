@@ -286,6 +286,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmBebidas";
             this.Text = "Mesas";
+            this.Activated += new System.EventHandler(this.frmBebidas_Activated);
             this.Load += new System.EventHandler(this.frmBebidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();
             this.grpBebidas.ResumeLayout(false);

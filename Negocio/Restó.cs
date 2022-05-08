@@ -22,7 +22,9 @@ namespace Negocio
         public List<Mozo>ListadeMozos = new List<Mozo>();
         public List<PersonalCocina>ListadePersonalCocina = new List<PersonalCocina>();
         public List<Turno> ListadeTurnos = new List<Turno>();
+        public List<Transaccion> ListadeTransacciones = new List<Transaccion>();
         List<Pedido> PedidosXplato = new List<Pedido>();
+
         Conectar conexion = new Conectar();
 
         #region Querys Listados
@@ -101,7 +103,7 @@ namespace Negocio
             ListadePlatos.Clear();
             foreach(DataRow row in conexion.DevolverListado(query).Rows)
             {
-                Plato nuevoPlato = new Plato(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString());
+                Plato nuevoPlato = new Plato(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(),Convert.ToInt32(row[4].ToString()),Convert.ToDecimal(row[5].ToString()));
                 ListadePlatos.Add(nuevoPlato);
             }
             return ListadePlatos;
@@ -114,18 +116,111 @@ namespace Negocio
             {
                 if (row[6].ToString() == "")
                 {
-                    Bebida nuevaBebida = new Bebida(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToDouble(row[4].ToString()), Convert.ToInt32(row[5].ToString()));
+                    Bebida nuevaBebida = new Bebida(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToDecimal(row[4].ToString()), Convert.ToInt32(row[5].ToString()));
                     ListadeBebidas.Add(nuevaBebida);
                 }
                 else
                 {
-                    Bebida_Alcoholica nuevaBebida = new Bebida_Alcoholica(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToDouble(row[4].ToString()), Convert.ToInt32(row[5].ToString()), Convert.ToDouble(row[6].ToString()));
+                    Bebida_Alcoholica nuevaBebida = new Bebida_Alcoholica(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToDecimal(row[4].ToString()), Convert.ToInt32(row[5].ToString()), Convert.ToDouble(row[6].ToString()));
                     ListadeBebidas.Add(nuevaBebida);
                 }
 
                 
             }
             return ListadeBebidas;
+        }
+
+        public List<Reserva> QueryReservas()
+        {
+            string query = @"Select * from Reserva where Estado= 1";
+            ListadeReservas.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                Reserva reserva = new Reserva(Convert.ToInt32(row[0].ToString()), Convert.ToDateTime(row[3].ToString()), Convert.ToInt32(row[4].ToString()), Convert.ToBoolean(row[5].ToString()));
+                if (row[1].ToString() != "")
+                {
+                    reserva.MesaReservada = BuscarMesa(Convert.ToInt32(row[1].ToString()));
+                }
+                ListadeReservas.Add(reserva);
+            }
+            return ListadeReservas;
+        }
+
+        public List<Mesa> QueryMesasDisponibles()
+        {
+            string query = @"Select * from Mesa where Estado= 'Disponible'";
+            ListadeMesas.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                Mesa nuevaMesa = new Mesa(Convert.ToInt32(row[0].ToString()), Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2].ToString()), row[3].ToString(), Convert.ToInt32(row[4].ToString()));
+                ListadeMesas.Add(nuevaMesa);
+            }
+            return ListadeMesas;
+        }
+
+        public List<Pedido> QueryPedidos()
+        {
+            string query = @"Select * from Pedido where Activo= 1";
+            ListadePedidos.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                Pedido pedido = new Pedido(Convert.ToInt32(row[0].ToString()), Convert.ToDateTime(row[3].ToString()), row[4].ToString(), Convert.ToDecimal(row[5].ToString()), Convert.ToBoolean(row[6].ToString()));
+                if (row[1].ToString() != "")
+                {
+                    pedido.CodigoMesa= BuscarMesa(Convert.ToInt32(row[1].ToString()));
+                }
+                if (row[2].ToString() != "")
+                {
+                    pedido.CodigoMozo = BuscarMozo(Convert.ToInt32(row[2].ToString()));
+                }
+                DetallePlatos(pedido);
+                DetalleBebidas(pedido);
+                pedido.CalcularMonto();
+                ListadePedidos.Add(pedido);
+            }
+            return ListadePedidos;
+        }
+        public void DetallePlatos(Pedido pedido)
+        {
+            string query = @"select * from Pedido_Plato inner join Plato on Pedido_Plato.Codigo_Plato=Plato.Codigo_Plato where Codigo_Pedido = " + pedido.NumeroPedido;
+            pedido.Platos.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                pedido.Platos.Add(BuscarPlato(Convert.ToInt32(row[1].ToString())));
+            }
+        }
+
+        public void DetalleBebidas(Pedido pedido)
+        {
+            string query = @"select * from Pedido_Bebida inner join Bebida on Pedido_Bebida.Codigo_Bebida=Bebida.Codigo_Bebida where Codigo_Pedido = " + pedido.NumeroPedido;
+            pedido.Bebidas.Clear();
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                pedido.Bebidas.Add(BuscarBebida(Convert.ToInt32(row[1].ToString())));
+            }
+        }
+
+        public Plato BuscarPlato(int codPlato)
+        {
+            string query = @"select * from Plato where Codigo_Plato= " + codPlato;
+            Plato nuevoPlato = null;
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                nuevoPlato = new Plato(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(),Convert.ToInt32(row[4].ToString()), Convert.ToDecimal(row[5].ToString()));
+            }
+            return nuevoPlato;
+        }
+
+        public Bebida BuscarBebida(int codBebida)
+        {
+            string query = @"select * from Bebida where Codigo_Bebida= " + codBebida;
+            Bebida nuevaBebida = null;
+            foreach (DataRow row in conexion.DevolverListado(query).Rows)
+            {
+                nuevaBebida = new Bebida(Convert.ToInt32(row[0].ToString()), row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToDecimal(row[4].ToString()), Convert.ToInt32(row[5].ToString()));
+
+            }
+            return nuevaBebida;
         }
         public List<Mozo> FillListadoMozosEnTurno(Turno turno)
         {
@@ -145,7 +240,7 @@ namespace Negocio
             PedidosXplato.Clear();
             foreach (DataRow row in conexion.DevolverListado(query).Rows)
             {
-                Pedido pedido = new Pedido(Convert.ToInt32(row[3].ToString()), BuscarMesa(Convert.ToInt32(row[4].ToString())), BuscarMozo(Convert.ToInt32(row[5].ToString())), Convert.ToDateTime(row[6].ToString()), row[7].ToString(), Convert.ToDecimal(row[8].ToString()));
+                Pedido pedido = new Pedido(Convert.ToInt32(row[3].ToString()), BuscarMesa(Convert.ToInt32(row[4].ToString())), BuscarMozo(Convert.ToInt32(row[5].ToString())), Convert.ToDateTime(row[6].ToString()), row[7].ToString(), Convert.ToDecimal(row[8].ToString()),Convert.ToBoolean(row[9].ToString()));
                 PedidosXplato.Add(pedido);
             }
             return PedidosXplato;
@@ -249,6 +344,7 @@ namespace Negocio
             dgv.Columns[1].HeaderText = "Nombre del Plato";
             dgv.Columns[2].HeaderText = "Tipo de Plato";
             dgv.Columns[3].HeaderText = "Clase de Plato";
+            dgv.Columns[5].DefaultCellStyle.Format = "c";
 
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
@@ -264,9 +360,8 @@ namespace Negocio
             dgv.Columns[2].Visible = false;
             dgv.Columns[3].Visible = false;
             dgv.Columns[4].Visible = false;
-            dgv.Columns[5].Visible = false;
-            dgv.Columns[6].HeaderText = "Monto";
-            dgv.Columns[7].Visible = false;
+            dgv.Columns[5].HeaderText = "Monto";
+            dgv.Columns[6].Visible = false;
 
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
@@ -292,6 +387,87 @@ namespace Negocio
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        public void DGVReservas(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Nro";
+            dgv.Columns[1].HeaderText = "Mesa";
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[3].HeaderText = "Fecha";
+            dgv.Columns[4].HeaderText = "Comensales";
+            dgv.Columns[5].Visible = false;
+
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        public void DGVMesasDisponibles(DataGridView dgv)
+        {
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[1].HeaderText = "Número";
+            dgv.Columns[2].HeaderText = "Capacidad Máxima";
+            dgv.Columns[3].Visible = false;
+            dgv.Columns[4].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        public void DGVPedidos(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Nro";
+            dgv.Columns[1].Visible = false;
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[3].HeaderText = "Fecha";
+            dgv.Columns[3].DefaultCellStyle.Format = "dd/MM HH:mm";
+            dgv.Columns[4].HeaderText = "Observaciones";
+            dgv.Columns[5].HeaderText = "Monto";
+            dgv.Columns[5].DefaultCellStyle.Format = "c";
+            dgv.Columns[6].HeaderText = "Activo?";
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public void DGVPlatosPedidos(DataGridView dgv)
+        {
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[1].HeaderText = "Plato";
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[3].Visible = false;
+            dgv.Columns[4].Visible = false;
+            dgv.Columns[5].HeaderText = "Precio";
+            dgv.Columns[5].DefaultCellStyle.Format = "c";
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+        public void DGVBebidasPedidos(DataGridView dgv)
+        {
+            dgv.Columns[0].Visible = false;
+            dgv.Columns[1].HeaderText = "Bebida";
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[3].Visible = false;
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[4].DefaultCellStyle.Format = "c";
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
         #endregion
 
         #region Calculos Grales
@@ -317,8 +493,40 @@ namespace Negocio
             int total = conexion.Cantidades(query2);
             return (double)frecuencia / (double)total;
         }
+        public void AsignarMesaAReserva(Reserva reserva)
+        {
+            string query = @"update Mesa set Estado= 'Ocupada', CantidadComensales= " + reserva.CantidadDeComensales + " where Mesa.Id_Mesa=" + reserva.MesaReservada.Codigo;
+            ABMAction(query);
+            query = @"update Reserva set Nro_Mesa=" + reserva.MesaReservada.NroDeMesa + " where Codigo_Reserva=" + reserva.Codigo;
+            ABMAction(query);
+        }
+        public void DesasignarMesa(Reserva reserva)
+        {
+            string query = @"update Mesa set Estado= 'Disponible', CantidadComensales=0 where Mesa.Id_Mesa=" + reserva.MesaReservada.Codigo;
+            ABMAction(query);
+        }
 
+        public void CancelarReserva(Reserva reserva)
+        {
+            string query = @"Update Reserva set Estado= 0 where Codigo_Reserva= " + reserva.Codigo;
+            ABMAction(query);
+        }
+
+        public void CerrarPedido(Pedido pedido)
+        {
+            string query;
+
+            Transaccion trans = new Transaccion(pedido.NumeroPedido, DateTime.Now, pedido.Monto, pedido.CodigoMesa.NroDeMesa, pedido.CodigoMozo.Legajo);
+            query = @"Insert into Transacciones (Codigo_Pedido,FechayHora,Monto, Codigo_Mesa, Codigo_Mozo) values ( " + trans.Pedido + ",'" + trans.FechayHora + "'," + trans.Monto + "," + trans.Mesa + "," + trans.Mozo + ")";
+            ABMAction(query);
+            query = @"update Pedido set Activo=0 where Codigo_Pedido= " + pedido.NumeroPedido;
+            ABMAction(query);
+            query = @"update Mesa set Estado='Disponible', CantidadComensales=0 where Nro_Mesa= " + trans.Mesa;
+            ABMAction(query);
+        }
         #endregion
+
+        #region ABM Clases
         public string ABMMesa(string accion, Mesa mesa)
         {
             string query;
@@ -426,9 +634,13 @@ namespace Negocio
             }
             return query;
         }
+       
+        #endregion
         public void ABMAction (string query)
         {
             conexion.EscribirDatos(query);
         }
+
+
     }
 }

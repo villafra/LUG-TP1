@@ -33,7 +33,7 @@
             this.ListaImagenes = new System.Windows.Forms.ImageList(this.components);
             this.panelMenuIzq = new System.Windows.Forms.Panel();
             this.btnPedidos = new System.Windows.Forms.Button();
-            this.btnPersonal = new System.Windows.Forms.Button();
+            this.btnInformes = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.picboxPanel = new System.Windows.Forms.PictureBox();
             this.btnLayout = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@
             // panelMenuIzq
             // 
             this.panelMenuIzq.Controls.Add(this.btnPedidos);
-            this.panelMenuIzq.Controls.Add(this.btnPersonal);
+            this.panelMenuIzq.Controls.Add(this.btnInformes);
             this.panelMenuIzq.Controls.Add(this.btnSalir);
             this.panelMenuIzq.Controls.Add(this.picboxPanel);
             this.panelMenuIzq.Controls.Add(this.btnLayout);
@@ -80,25 +80,26 @@
             // 
             this.btnPedidos.ImageIndex = 4;
             this.btnPedidos.ImageList = this.ListaImagenes;
-            this.btnPedidos.Location = new System.Drawing.Point(26, 410);
+            this.btnPedidos.Location = new System.Drawing.Point(26, 335);
             this.btnPedidos.Margin = new System.Windows.Forms.Padding(4);
             this.btnPedidos.Name = "btnPedidos";
             this.btnPedidos.Size = new System.Drawing.Size(204, 54);
             this.btnPedidos.TabIndex = 15;
             this.btnPedidos.Text = "Pedidos";
             this.btnPedidos.UseVisualStyleBackColor = true;
+            this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
-            // btnPersonal
+            // btnInformes
             // 
-            this.btnPersonal.ImageIndex = 1;
-            this.btnPersonal.ImageList = this.ListaImagenes;
-            this.btnPersonal.Location = new System.Drawing.Point(26, 276);
-            this.btnPersonal.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPersonal.Name = "btnPersonal";
-            this.btnPersonal.Size = new System.Drawing.Size(204, 54);
-            this.btnPersonal.TabIndex = 14;
-            this.btnPersonal.Text = "Personal";
-            this.btnPersonal.UseVisualStyleBackColor = true;
+            this.btnInformes.ImageIndex = 1;
+            this.btnInformes.ImageList = this.ListaImagenes;
+            this.btnInformes.Location = new System.Drawing.Point(26, 398);
+            this.btnInformes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnInformes.Name = "btnInformes";
+            this.btnInformes.Size = new System.Drawing.Size(204, 54);
+            this.btnInformes.TabIndex = 14;
+            this.btnInformes.Text = "Informes";
+            this.btnInformes.UseVisualStyleBackColor = true;
             // 
             // btnSalir
             // 
@@ -141,13 +142,14 @@
             // 
             this.btnReservas.ImageIndex = 2;
             this.btnReservas.ImageList = this.ListaImagenes;
-            this.btnReservas.Location = new System.Drawing.Point(26, 343);
+            this.btnReservas.Location = new System.Drawing.Point(26, 272);
             this.btnReservas.Margin = new System.Windows.Forms.Padding(4);
             this.btnReservas.Name = "btnReservas";
             this.btnReservas.Size = new System.Drawing.Size(204, 54);
             this.btnReservas.TabIndex = 7;
             this.btnReservas.Text = "Reservas";
             this.btnReservas.UseVisualStyleBackColor = true;
+            this.btnReservas.Click += new System.EventHandler(this.btnReservas_Click);
             // 
             // mStripMenu
             // 
@@ -265,7 +267,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem PlatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BebidasToolStripMenuItem;
-        private System.Windows.Forms.Button btnPersonal;
+        private System.Windows.Forms.Button btnInformes;
         private System.Windows.Forms.ImageList ListaImagenes;
         private System.Windows.Forms.Button btnPedidos;
     }

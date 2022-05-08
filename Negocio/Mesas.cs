@@ -102,5 +102,12 @@ namespace Negocio
             dgvMesas.DataSource = restó.QueryMesas();
             restó.DGVMesas(dgvMesas);
         }
+
+        private void frmMesas_Activated(object sender, EventArgs e)
+        {
+            dgvMesas.DataSource = null;
+            dgvMesas.DataSource = restó.QueryMesas();
+            restó.DGVMesas(dgvMesas);
+        }
     }
 }

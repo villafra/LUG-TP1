@@ -14,8 +14,8 @@ namespace Negocio
         public Mesa CodigoMesa { get; set; }
         public Mozo CodigoMozo { get; set; }
         public DateTime FechaHoradeInicio { get; set; }
-        public List<Plato> Platos { get; set; }
-        public List<Bebida> Bebidas { get; set; }
+        public List<Plato> Platos = new List<Plato>();
+        public List<Bebida> Bebidas = new List<Bebida>();
         public string Observaciones { get; set; }
         public decimal Monto { get; set; }
         public bool Activo { get; set; }
@@ -58,6 +58,19 @@ namespace Negocio
             Observaciones = observaciones;
             Monto = monto;
             Activo = activo;
+        }
+
+        public void CalcularMonto()
+        {
+            Monto = 0;
+            foreach(var plato in Platos)
+            {
+                Monto += plato.Costo;
+            }
+            foreach(var bebida in Bebidas)
+            {
+                Monto += bebida.Precio;
+            }
         }
     }
 }

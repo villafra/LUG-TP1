@@ -39,5 +39,9 @@ namespace Estructura
             Capacidad = capacidad;
             Estado = estado;
         }
+        public override string ToString()
+        {
+            return this.NroDeMesa.ToString();
+        }
     }
 }

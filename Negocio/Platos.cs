@@ -28,7 +28,7 @@ namespace Negocio
 
         private void btnNuevoPlato_Click(object sender, EventArgs e)
         {
-            Plato nuevoPlato = new Plato(txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString());
+            Plato nuevoPlato = new Plato(txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString(), Convert.ToDecimal(txtCosto.Text));
             restó.ABMAction(restó.ABMPlato("Alta",nuevoPlato));
             ActualizarGrid();
 
@@ -49,6 +49,7 @@ namespace Negocio
                 txtNombre.Text = VerPlato.Nombre;
                 ComboTipo.Text = VerPlato.Tipo; 
                 ComboClase.Text = VerPlato.Clase;
+                txtCosto.Text = VerPlato.Costo.ToString();
                 lblCantidad.Text= restó.PromedioPlatosEnPedido(VerPlato).ToString();
                 dgvPedidosConPlat.DataSource = null;
                 dgvPedidosConPlat.DataSource = restó.FillPedidosconPlato(VerPlato);
@@ -59,14 +60,14 @@ namespace Negocio
 
         private void btnModificarPlato_Click(object sender, EventArgs e)
         {
-            Plato modificarPlato = new Plato(Int32.Parse(txtCodigo.Text),txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString());
+            Plato modificarPlato = new Plato(Int32.Parse(txtCodigo.Text),txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString(), Convert.ToDecimal(txtCosto.Text));
             restó.ABMAction(restó.ABMPlato("Modificar", modificarPlato));
             ActualizarGrid();
         }
 
         private void btnEliminarPlato_Click(object sender, EventArgs e)
         {
-            Plato eliminarPlato = new Plato(Int32.Parse(txtCodigo.Text), txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString());
+            Plato eliminarPlato = new Plato(Int32.Parse(txtCodigo.Text), txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString(), Convert.ToDecimal(txtCosto.Text));
             restó.ABMAction(restó.ABMPlato("Eliminar", eliminarPlato));
             ActualizarGrid();
         }
@@ -78,6 +79,9 @@ namespace Negocio
             restó.DGVPlatos(dgvPlatos);
         }
 
-       
+        private void frmPlatos_Activated(object sender, EventArgs e)
+        {
+            ActualizarGrid();
+        }
     }
 }

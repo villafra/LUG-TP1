@@ -97,14 +97,19 @@ namespace Negocio
         {
             if (comboTipo.SelectedItem.ToString() != "Alcoholica")
             {
-                Bebida bebida = new Bebida(Int32.Parse(txtCodigo.Text),txtNombre.Text, comboTipo.SelectedItem.ToString(), txtPresentacion.Text, Convert.ToDouble(txtPrecio.Text), Int32.Parse(lblCantidad.Text));
+                Bebida bebida = new Bebida(Int32.Parse(txtCodigo.Text),txtNombre.Text, comboTipo.SelectedItem.ToString(), txtPresentacion.Text, Convert.ToDecimal(txtPrecio.Text), Int32.Parse(lblCantidad.Text));
                 restó.ABMAction(restó.ABMBebida(accion, bebida));
             }
             else
             {
-                Bebida_Alcoholica bebida = new Bebida_Alcoholica(Int32.Parse(txtCodigo.Text), txtNombre.Text, comboTipo.SelectedItem.ToString(), txtPresentacion.Text, Convert.ToDouble(txtPrecio.Text), Int32.Parse(lblCantidad.Text), Convert.ToDouble(txtABV.Text));
+                Bebida_Alcoholica bebida = new Bebida_Alcoholica(Int32.Parse(txtCodigo.Text), txtNombre.Text, comboTipo.SelectedItem.ToString(), txtPresentacion.Text, Convert.ToDecimal(txtPrecio.Text), Int32.Parse(lblCantidad.Text), Convert.ToDouble(txtABV.Text));
                 restó.ABMAction(restó.ABMBebidaAlcoholica(accion, bebida));
             }
+        }
+
+        private void frmBebidas_Activated(object sender, EventArgs e)
+        {
+            ActualizarGrid();
         }
     }
 }
