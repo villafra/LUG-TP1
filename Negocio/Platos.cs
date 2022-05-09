@@ -29,8 +29,15 @@ namespace Negocio
         private void btnNuevoPlato_Click(object sender, EventArgs e)
         {
             Plato nuevoPlato = new Plato(txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString(), Convert.ToDecimal(txtCosto.Text));
-            restó.ABMAction(restó.ABMPlato("Alta",nuevoPlato));
-            ActualizarGrid();
+            if (restó.ExistePlato(nuevoPlato.Nombre))
+            {
+                restó.ABMAction(restó.ABMPlato("Alta", nuevoPlato));
+                ActualizarGrid();
+            }
+            else
+            {
+                Calculos.MsgBox("El nombre del plato ya existe!");
+            }
 
         }
 
@@ -51,8 +58,7 @@ namespace Negocio
                 ComboClase.Text = VerPlato.Clase;
                 txtCosto.Text = VerPlato.Costo.ToString();
                 lblCantidad.Text= restó.PromedioPlatosEnPedido(VerPlato).ToString();
-                dgvPedidosConPlat.DataSource = null;
-                dgvPedidosConPlat.DataSource = restó.FillPedidosconPlato(VerPlato);
+                Calculos.RefreshGrilla(dgvPedidosConPlat, restó.FillPedidosconPlato(VerPlato));
                 restó.DGVPedidosXPlatos(dgvPedidosConPlat);
             }
             catch { }
@@ -61,27 +67,37 @@ namespace Negocio
         private void btnModificarPlato_Click(object sender, EventArgs e)
         {
             Plato modificarPlato = new Plato(Int32.Parse(txtCodigo.Text),txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString(), Convert.ToDecimal(txtCosto.Text));
-            restó.ABMAction(restó.ABMPlato("Modificar", modificarPlato));
-            ActualizarGrid();
+            if(Calculos.EstaSeguro("Modificar Plato", modificarPlato.Codigo, modificarPlato.Nombre))
+            {
+                restó.ABMAction(restó.ABMPlato("Modificar", modificarPlato));
+                ActualizarGrid();
+            }
         }
 
         private void btnEliminarPlato_Click(object sender, EventArgs e)
         {
             Plato eliminarPlato = new Plato(Int32.Parse(txtCodigo.Text), txtNombre.Text, ComboTipo.SelectedItem.ToString(), ComboClase.SelectedItem.ToString(), Convert.ToDecimal(txtCosto.Text));
-            restó.ABMAction(restó.ABMPlato("Eliminar", eliminarPlato));
-            ActualizarGrid();
+            if (Calculos.EstaSeguro("Eliminar Plato", eliminarPlato.Codigo, eliminarPlato.Nombre))
+            {
+                restó.ABMAction(restó.ABMPlato("Eliminar", eliminarPlato));
+                ActualizarGrid();
+            }
         }
 
         private void ActualizarGrid()
         {
-            dgvPlatos.DataSource = null;
-            dgvPlatos.DataSource = restó.QueryPlatos();
+            Calculos.RefreshGrilla(dgvPlatos, restó.QueryPlatos()); 
             restó.DGVPlatos(dgvPlatos);
         }
 
         private void frmPlatos_Activated(object sender, EventArgs e)
         {
             ActualizarGrid();
+        }
+
+        private void txtCosto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarNumeros(e);
         }
     }
 }

@@ -32,7 +32,7 @@
             this.dgvPlatos = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnCancelarReserva = new System.Windows.Forms.Button();
+            this.btnCancelarPedido = new System.Windows.Forms.Button();
             this.btnCerrarPedido = new System.Windows.Forms.Button();
             this.dgvBebidas = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
@@ -87,18 +87,18 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "<== Cancelar Pedido";
             // 
-            // btnCancelarReserva
+            // btnCancelarPedido
             // 
-            this.btnCancelarReserva.BackgroundImage = global::Negocio.Properties.Resources.Picture21;
-            this.btnCancelarReserva.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancelarReserva.FlatAppearance.BorderSize = 0;
-            this.btnCancelarReserva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelarReserva.Location = new System.Drawing.Point(33, 471);
-            this.btnCancelarReserva.Name = "btnCancelarReserva";
-            this.btnCancelarReserva.Size = new System.Drawing.Size(108, 79);
-            this.btnCancelarReserva.TabIndex = 4;
-            this.btnCancelarReserva.UseVisualStyleBackColor = true;
-            this.btnCancelarReserva.Click += new System.EventHandler(this.btnCerrarPedido_Click);
+            this.btnCancelarPedido.BackgroundImage = global::Negocio.Properties.Resources.Picture21;
+            this.btnCancelarPedido.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelarPedido.FlatAppearance.BorderSize = 0;
+            this.btnCancelarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarPedido.Location = new System.Drawing.Point(33, 471);
+            this.btnCancelarPedido.Name = "btnCancelarPedido";
+            this.btnCancelarPedido.Size = new System.Drawing.Size(108, 79);
+            this.btnCancelarPedido.TabIndex = 4;
+            this.btnCancelarPedido.UseVisualStyleBackColor = true;
+            this.btnCancelarPedido.Click += new System.EventHandler(this.btnCancelarPedido_Click);
             // 
             // btnCerrarPedido
             // 
@@ -134,7 +134,7 @@
             this.Controls.Add(this.dgvBebidas);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCancelarReserva);
+            this.Controls.Add(this.btnCancelarPedido);
             this.Controls.Add(this.btnCerrarPedido);
             this.Controls.Add(this.dgvPlatos);
             this.Controls.Add(this.dgvPedidos);
@@ -156,7 +156,7 @@
         private System.Windows.Forms.DataGridView dgvPedidos;
         private System.Windows.Forms.DataGridView dgvPlatos;
         private System.Windows.Forms.Button btnCerrarPedido;
-        private System.Windows.Forms.Button btnCancelarReserva;
+        private System.Windows.Forms.Button btnCancelarPedido;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvBebidas;

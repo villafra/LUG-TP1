@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,21 +33,48 @@ namespace Negocio
 
         public void ActualizarGrid()
         {
-            dgvReservas.DataSource = null;
-            dgvReservas.DataSource = restó.QueryReservas();
+            Calculos.RefreshGrilla(dgvReservas, restó.QueryReservas());
             restó.DGVReservas(dgvReservas);
-            dgvMesasDisponibles.DataSource = null;
-            dgvMesasDisponibles.DataSource = restó.QueryMesasDisponibles();
+            Calculos.RefreshGrilla(dgvMesasDisponibles, restó.QueryMesasDisponibles());
             restó.DGVMesasDisponibles(dgvMesasDisponibles);
         }
 
         private void AsignarMesa()
         {
-            Mesa mesa = (Mesa)dgvMesasDisponibles.SelectedRows[0].DataBoundItem;
-            Reserva reserva = (Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
-            reserva.AsignarMesa(mesa);
-            restó.AsignarMesaAReserva(reserva);
-            ActualizarGrid();
+            try
+            {
+                Mesa mesa = (Mesa)dgvMesasDisponibles.SelectedRows[0].DataBoundItem;
+                Reserva reserva = (Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
+
+               
+                if (reserva.MesaReservada == null)
+                {
+                    if (reserva.CantidadDeComensales <= mesa.Capacidad)
+                    {
+                    reserva.AsignarMesa(mesa);
+                    restó.AsignarMesaAReserva(reserva);
+                    ActualizarGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Cantidad de Comensales supera la\ncapacidad máxima de la mesa elegida");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("La Reserva ya tiene una mesa asignada");
+                }
+ 
+            }
+            catch(SqlException sql)
+            {
+                MessageBox.Show(sql.Message);
+            }
+           catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
           
         }
 
@@ -64,6 +92,7 @@ namespace Negocio
         private void btnCancelarReserva_Click(object sender, EventArgs e)
         {
             Reserva reserva = (Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
+            restó.DesasignarMesa(reserva);
             restó.CancelarReserva(reserva);
             ActualizarGrid();
         }
@@ -72,10 +101,18 @@ namespace Negocio
         {
             Mesa mesa = (Mesa)dgvMesasDisponibles.SelectedRows[0].DataBoundItem;
             Reserva reserva = (Reserva)dgvReservas.SelectedRows[0].DataBoundItem;
-            restó.DesasignarMesa(reserva);
-            reserva.AsignarMesa(mesa);
-            restó.AsignarMesaAReserva(reserva);
-            ActualizarGrid();
+            if (reserva.CantidadDeComensales <= mesa.Capacidad)
+            {
+                restó.DesasignarMesa(reserva);
+                reserva.AsignarMesa(mesa);
+                restó.AsignarMesaAReserva(reserva);
+                ActualizarGrid();
+            }
+            else
+            {
+                MessageBox.Show("La Cantidad de Comensales supera la\ncapacidad máxima de la mesa elegida");
+            }
         }
+
     }
 }

@@ -19,9 +19,5 @@ namespace Cocina
             GraduaciónAlcoholica = graduacion;
         }
 
-       
-
-      
-
     }
 }

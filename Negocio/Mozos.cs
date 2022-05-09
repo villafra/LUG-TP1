@@ -30,8 +30,16 @@ namespace Negocio
         private void btnNuevaMozo_Click(object sender, EventArgs e)
         {
             Mozo NuevoMozo = new Mozo(long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, dtpFechaNacimiento.Value,restó.DevolverTurno(comboTurno.SelectedItem.ToString()));
-            restó.ABMAction(restó.ABMMozo("Alta",NuevoMozo));
-            ActualizarGrid();
+           if (restó.ExisteMozo(NuevoMozo.DNI))
+            {
+                restó.ABMAction(restó.ABMMozo("Alta", NuevoMozo));
+                ActualizarGrid();
+            }
+            else
+            {
+                Calculos.MsgBox("El DNI ya existe en la base de datos de Empleados");
+            }
+
 
         }
 
@@ -62,27 +70,37 @@ namespace Negocio
         private void btnModificarMozo_Click(object sender, EventArgs e)
         {
             Mozo ModificarMozo = new Mozo(Int32.Parse(txtLegajo.Text), long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text, dtpFechaNacimiento.Value, restó.DevolverTurno(comboTurno.SelectedItem.ToString()),Int32.Parse(lblPuntuación.Text));
-            restó.ABMAction(restó.ABMMozo("Modificar", ModificarMozo));
-            ActualizarGrid();
+            if (Calculos.EstaSeguro("Modificar Mozo", ModificarMozo.Legajo, ModificarMozo.Apellido))
+            {
+                restó.ABMAction(restó.ABMMozo("Modificar", ModificarMozo));
+                ActualizarGrid();
+            }
         }
 
         private void btnEliminarMozo_Click(object sender, EventArgs e)
         {
             Mozo EliminarMozo = new Mozo(Int32.Parse(txtLegajo.Text), long.Parse(txtDNI.Text), txtNombre.Text, txtApellido.Text);
-            restó.ABMAction(restó.ABMMozo("Eliminar", EliminarMozo));
-            ActualizarGrid();
+            if(Calculos.EstaSeguro("Eliminar Mozo", EliminarMozo.Legajo, EliminarMozo.Apellido))
+            {
+                restó.ABMAction(restó.ABMMozo("Eliminar", EliminarMozo));
+                ActualizarGrid();
+            }
         }
 
         private void ActualizarGrid()
         {
-            dgvMozos.DataSource = null;
-            dgvMozos.DataSource = restó.QueryMozos();
+            Calculos.RefreshGrilla(dgvMozos, restó.QueryMozos());
             restó.DGVMozos(dgvMozos);
         }
 
         private void frmMozos_Activated(object sender, EventArgs e)
         {
             ActualizarGrid();
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarEnteros(e);
         }
     }
 }

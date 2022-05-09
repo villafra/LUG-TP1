@@ -30,8 +30,15 @@ namespace Negocio
         private void btnNuevoTurno_Click(object sender, EventArgs e)
         {
             Turno nuevoTurno = new Turno(txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Alta",nuevoTurno));
-            ActualizarGrid();
+            if (restó.ExisteTurno(nuevoTurno.NombreTurno))
+            {
+                restó.ABMAction(restó.ABMTurno("Alta", nuevoTurno));
+                ActualizarGrid();
+            }
+            else
+            {
+                Calculos.MsgBox("El nombre del turno ya existe!");
+            }
 
         }
 
@@ -52,8 +59,7 @@ namespace Negocio
                 dtpHoraFin.Value = VerTurno.HoraFin;
                 lblCantidad.Text = restó.CantidadMozosXTurno(VerTurno).ToString();
                 prgCantidad.Value = restó.CantidadMozosXTurno(VerTurno);
-                dgvMozosEnturno.DataSource = null;
-                dgvMozosEnturno.DataSource = restó.FillListadoMozosEnTurno(VerTurno);
+                Calculos.RefreshGrilla(dgvMozosEnturno, restó.FillListadoMozosEnTurno(VerTurno));
                 restó.DGVTurnosMozos(dgvMozosEnturno);
             }
             catch { }
@@ -62,21 +68,26 @@ namespace Negocio
         private void btnModificarTurno_Click(object sender, EventArgs e)
         {
             Turno modificarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Modificar", modificarTurno));
-            ActualizarGrid();
+            if(Calculos.EstaSeguro("Modificar Turno", modificarTurno.Codigo, modificarTurno.NombreTurno))
+            {
+                restó.ABMAction(restó.ABMTurno("Modificar", modificarTurno));
+                ActualizarGrid();
+            }
         }
 
         private void btnEliminarTurno_Click(object sender, EventArgs e)
         {
             Turno eliminarTurno = new Turno(Convert.ToInt32(txtCodigo.Text), txtNombreTurno.Text, dtpHoraInicio.Value, dtpHoraFin.Value);
-            restó.ABMAction(restó.ABMTurno("Eliminar", eliminarTurno));
-            ActualizarGrid();
+            if(Calculos.EstaSeguro("Eliminar Turno", eliminarTurno.Codigo, eliminarTurno.NombreTurno))
+            {
+                restó.ABMAction(restó.ABMTurno("Eliminar", eliminarTurno));
+                ActualizarGrid();
+            }
         }
 
         private void ActualizarGrid()
         {
-            dgvTurnos.DataSource = null;
-            dgvTurnos.DataSource = restó.QueryTurnos();
+            Calculos.RefreshGrilla(dgvTurnos, restó.QueryTurnos());
             restó.DGVTurnos(dgvTurnos);
         }
 

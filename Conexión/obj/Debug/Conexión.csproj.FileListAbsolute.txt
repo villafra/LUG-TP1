@@ -10,3 +10,6 @@ C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Le
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Conexión\obj\Debug\Conexión.csproj.CoreCompileInputs.cache
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Conexión\obj\Debug\Conexión.dll
 C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Conexión\obj\Debug\Conexión.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Conexión\bin\Debug\Aspecto.dll
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Conexión\bin\Debug\Aspecto.pdb
+C:\Users\Franc\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\4° Cuatrimestre\Lenguajes de Ultima Generación\Visual Studio\LUG TP1\Conexión\obj\Debug\Conexión.csproj.CopyComplete

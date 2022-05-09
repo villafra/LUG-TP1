@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cocina
 {
-    public class Plato :IStock 
+    public class Plato
     {
         public int Codigo { get; set; }
         public string Nombre { get; set; }
@@ -51,9 +51,5 @@ namespace Cocina
             Costo = costo;
         }
 
-        public void AgregarStock(int cantidad)
-        {
-            Stock += cantidad;
-        }
     }
 }

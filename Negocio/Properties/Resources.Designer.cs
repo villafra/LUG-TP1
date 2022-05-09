@@ -323,6 +323,26 @@ namespace Negocio.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Picture22 {
+            get {
+                object obj = ResourceManager.GetObject("Picture22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Picture22png {
+            get {
+                object obj = ResourceManager.GetObject("Picture22png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Picture6 {
             get {
                 object obj = ResourceManager.GetObject("Picture6", resourceCulture);

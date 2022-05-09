@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Aspecto;
 
 namespace Conexión
 {
@@ -30,33 +31,68 @@ namespace Conexión
 
         public DataTable DevolverListado(string query)
         {
-            AbrirConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = query;
-            cmd.Connection = conexion;
-            SqlDataAdapter DataAdapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
-            DataAdapter.Fill(table);
-            CerrarConexion();
+            try
+            {
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = query;
+                cmd.Connection = conexion;
+                SqlDataAdapter DataAdapter = new SqlDataAdapter(cmd);
+                DataAdapter.Fill(table);
+            }
+            catch (SqlException sql)
+            {
+                Calculos.MsgBox(sql.Message);
+            }
+            catch (Exception ex)
+            {
+                Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                CerrarConexion(); 
+            }
             return table;
         }
 
 
         public int Cantidades(string query)
         {
-            AbrirConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = query;
-            cmd.Connection = conexion;
-            SqlDataReader reader = cmd.ExecuteReader();
             int cantidad = 0;
-            while (reader.Read())
+            try
             {
-                cantidad = Convert.ToInt32(reader[0]);
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = query;
+                cmd.Connection = conexion;
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    if (!reader.IsDBNull(0))
+                    {
+                        cantidad = Convert.ToInt32(reader[0]);
+                    }
+
+                }
+            }
+            catch (SqlException sql)
+            {
+                Calculos.MsgBox(sql.Message);
+            }
+            catch (Exception ex)
+            {
+                Calculos.MsgBox(ex.Message);
+            }
+            finally
+            {
+                CerrarConexion();
             }
             return cantidad;
+            
         }
 
         public bool EscribirDatos(string query)

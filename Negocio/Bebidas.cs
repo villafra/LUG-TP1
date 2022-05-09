@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Aspecto;
 using Estructura;
 using Cocina;
+using Microsoft.VisualBasic;
+using System.Data.SqlClient;
 
 namespace Negocio
 {
@@ -88,8 +90,7 @@ namespace Negocio
 
         private void ActualizarGrid()
         {
-            dgvBebidas.DataSource = null;
-            dgvBebidas.DataSource = restó.QueryBebidas();
+            Calculos.RefreshGrilla(dgvBebidas, restó.QueryBebidas());
             restó.DGVBebidas(dgvBebidas);
         }
 
@@ -110,6 +111,64 @@ namespace Negocio
         private void frmBebidas_Activated(object sender, EventArgs e)
         {
             ActualizarGrid();
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarNumeros(e);
+        }
+
+        private void txtABV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarNumeros(e);
+        }
+
+        private void btnAgregarStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvBebidas.SelectedRows[0].Cells[2].Value.ToString() == "Alcoholica")
+                {
+                    Bebida_Alcoholica VerBebida = (Bebida_Alcoholica)dgvBebidas.SelectedRows[0].DataBoundItem;
+                    if (Calculos.EstaSeguro("Agregar Stock de Bebida", VerBebida.Codigo, VerBebida.Nombre))
+                    {
+                        int Cantidad;
+                        bool numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"),out Cantidad);
+                        while (!numero)
+                        {
+                            numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
+                        }
+                        VerBebida.AgregarStock(Cantidad);
+                        restó.ABMAction(restó.ABMBebidaAlcoholica("Modificar", VerBebida));
+                        Calculos.MsgBox("Stock Agregado");
+                    }
+                }
+                else
+                {
+                    Bebida VerBebida = (Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
+                    if (Calculos.EstaSeguro("Agregar Stock de Bebida", VerBebida.Codigo, VerBebida.Nombre))
+                    {
+                        int Cantidad;
+                        bool numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
+                        while (!numero)
+                        {
+                            numero = Int32.TryParse(Interaction.InputBox("Ingrese Cantidad a Agregar", "Agregar Stock"), out Cantidad);
+                        }
+                        VerBebida.AgregarStock(Cantidad);
+                        restó.ABMAction(restó.ABMBebida("Modificar", VerBebida));
+                        Calculos.MsgBox("Stock Agregado");
+                    }
+                }
+            }
+            catch(SqlException sql)
+            {
+                Calculos.MsgBox(sql.Message);
+            }
+            catch { }
+            finally
+            {
+                ActualizarGrid();
+            }
         }
     }
 }

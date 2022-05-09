@@ -37,5 +37,8 @@ namespace Cocina
         {
             Stock += cantidad;
         }
+
+      
+        
     }
 }

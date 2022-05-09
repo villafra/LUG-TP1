@@ -187,6 +187,7 @@
             this.txtDNI.Size = new System.Drawing.Size(102, 22);
             this.txtDNI.TabIndex = 14;
             this.txtDNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
             // 
             // lblDNI
             // 

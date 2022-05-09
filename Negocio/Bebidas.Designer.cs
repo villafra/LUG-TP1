@@ -45,6 +45,7 @@
             this.lblCantidad = new System.Windows.Forms.Label();
             this.prgCantidad = new System.Windows.Forms.ProgressBar();
             this.lblStock = new System.Windows.Forms.Label();
+            this.btnAgregarStock = new System.Windows.Forms.Button();
             this.btnEliminarTurno = new System.Windows.Forms.Button();
             this.btnModificarTurno = new System.Windows.Forms.Button();
             this.btnNuevoTurno = new System.Windows.Forms.Button();
@@ -57,7 +58,7 @@
             this.dgvBebidas.AllowUserToAddRows = false;
             this.dgvBebidas.AllowUserToDeleteRows = false;
             this.dgvBebidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBebidas.Location = new System.Drawing.Point(117, 53);
+            this.dgvBebidas.Location = new System.Drawing.Point(49, 53);
             this.dgvBebidas.Name = "dgvBebidas";
             this.dgvBebidas.ReadOnly = true;
             this.dgvBebidas.RowHeadersWidth = 51;
@@ -111,6 +112,7 @@
             this.txtABV.Size = new System.Drawing.Size(123, 22);
             this.txtABV.TabIndex = 36;
             this.txtABV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtABV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtABV_KeyPress);
             // 
             // lblABV
             // 
@@ -128,6 +130,7 @@
             this.txtPrecio.Size = new System.Drawing.Size(123, 22);
             this.txtPrecio.TabIndex = 34;
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // lblPrecio
             // 
@@ -228,6 +231,21 @@
             this.lblStock.Text = "Stock Actual";
             this.lblStock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnAgregarStock
+            // 
+            this.btnAgregarStock.BackgroundImage = global::Negocio.Properties.Resources.Picture22;
+            this.btnAgregarStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgregarStock.FlatAppearance.BorderSize = 0;
+            this.btnAgregarStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarStock.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarStock.ForeColor = System.Drawing.Color.Gold;
+            this.btnAgregarStock.Location = new System.Drawing.Point(717, 214);
+            this.btnAgregarStock.Name = "btnAgregarStock";
+            this.btnAgregarStock.Size = new System.Drawing.Size(100, 93);
+            this.btnAgregarStock.TabIndex = 5;
+            this.btnAgregarStock.UseVisualStyleBackColor = true;
+            this.btnAgregarStock.Click += new System.EventHandler(this.btnAgregarStock_Click);
+            // 
             // btnEliminarTurno
             // 
             this.btnEliminarTurno.BackgroundImage = global::Negocio.Properties.Resources.Picture18;
@@ -278,6 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 609);
+            this.Controls.Add(this.btnAgregarStock);
             this.Controls.Add(this.btnEliminarTurno);
             this.Controls.Add(this.btnModificarTurno);
             this.Controls.Add(this.btnNuevoTurno);
@@ -317,5 +336,6 @@
         private System.Windows.Forms.TextBox txtPresentacion;
         private System.Windows.Forms.Label lblPresentación;
         private System.Windows.Forms.ComboBox comboTipo;
+        private System.Windows.Forms.Button btnAgregarStock;
     }
 }

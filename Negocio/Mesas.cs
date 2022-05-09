@@ -29,9 +29,15 @@ namespace Negocio
         private void btnNuevaMesa_Click(object sender, EventArgs e)
         {
             Mesa NuevaMesa = new Mesa(Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text, 0);
+            if (restó.ExisteMesa(NuevaMesa.NroDeMesa))
+            {
             restó.ABMAction( restó.ABMMesa("Alta", NuevaMesa));
+            }
+            else
+            {
+                Calculos.MsgBox("El número de mesa ya existe\n Por favor, escoja otro");
+            }
             ActualizarGrid();
-
         }
 
         private void frmMesas_Load(object sender, EventArgs e)
@@ -70,15 +76,22 @@ namespace Negocio
         private void btnModificarMesa_Click(object sender, EventArgs e)
         {
             Mesa ModificarMesa = new Mesa(Int32.Parse(txtCodigoMesa.Text), Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text);
-            restó.ABMAction(restó.ABMMesa("Modificar", ModificarMesa));
-            ActualizarGrid();
+            if (Calculos.EstaSeguro("Modificar Mesa", ModificarMesa.Codigo, ModificarMesa.NroDeMesa.ToString()))
+            {
+                restó.ABMAction(restó.ABMMesa("Modificar", ModificarMesa));
+                ActualizarGrid();
+            }
         }
 
         private void btnEliminarMesa_Click(object sender, EventArgs e)
         {
             Mesa EliminarMesa = new Mesa(Int32.Parse(txtCodigoMesa.Text), Int32.Parse(txtNumeroMesa.Text), Int32.Parse(txtCapacidad.Text), VerChecked(rdbDisponible, RdbOcupada, rdbReservada).Text);
-            restó.ABMAction(restó.ABMMesa("Eliminar", EliminarMesa));
-            ActualizarGrid();
+            if (Calculos.EstaSeguro("Eliminar Mesa", EliminarMesa.Codigo, EliminarMesa.NroDeMesa.ToString()))
+            {
+                restó.ABMAction(restó.ABMMesa("Eliminar", EliminarMesa));
+                ActualizarGrid();
+            }
+
         }
 
         private RadioButton VerChecked(RadioButton rdbDisponible, RadioButton RdbOcupada, RadioButton rdbReservada)
@@ -98,16 +111,24 @@ namespace Negocio
         }
         private void ActualizarGrid()
         {
-            dgvMesas.DataSource = null;
-            dgvMesas.DataSource = restó.QueryMesas();
+            Calculos.RefreshGrilla(dgvMesas, restó.QueryMesas());
             restó.DGVMesas(dgvMesas);
         }
 
         private void frmMesas_Activated(object sender, EventArgs e)
         {
-            dgvMesas.DataSource = null;
-            dgvMesas.DataSource = restó.QueryMesas();
-            restó.DGVMesas(dgvMesas);
+            ActualizarGrid();
         }
+
+        private void txtNumeroMesa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarNumeros(e);
+        }
+
+        private void txtCapacidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Calculos.ValidarNumeros(e);
+        }
+
     }
 }

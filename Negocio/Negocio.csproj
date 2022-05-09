@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,6 +50,7 @@
     <Compile Include="Bebidas.Designer.cs">
       <DependentUpon>Bebidas.cs</DependentUpon>
     </Compile>
+    <Compile Include="PedidoCancelado.cs" />
     <Compile Include="Platos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +232,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Picture21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture22png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Picture22.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,12 +9,14 @@ using Estructura;
 using Cocina;
 using Conexión;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Negocio
 {
     public class Restó
     {
         public List<Mesa> ListadeMesas = new List<Mesa>();
+        public List<Mesa>MesasDisponibles = new List<Mesa>();
         public List<Pedido>ListadePedidos = new List<Pedido>();
         public List<Reserva>ListadeReservas = new List<Reserva>();
         public List<Plato> ListadePlatos = new List<Plato>();
@@ -149,13 +151,13 @@ namespace Negocio
         public List<Mesa> QueryMesasDisponibles()
         {
             string query = @"Select * from Mesa where Estado= 'Disponible'";
-            ListadeMesas.Clear();
+            MesasDisponibles.Clear();
             foreach (DataRow row in conexion.DevolverListado(query).Rows)
             {
                 Mesa nuevaMesa = new Mesa(Convert.ToInt32(row[0].ToString()), Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2].ToString()), row[3].ToString(), Convert.ToInt32(row[4].ToString()));
-                ListadeMesas.Add(nuevaMesa);
+                MesasDisponibles.Add(nuevaMesa);
             }
-            return ListadeMesas;
+            return MesasDisponibles;
         }
 
         public List<Pedido> QueryPedidos()
@@ -236,11 +238,14 @@ namespace Negocio
 
         public List<Pedido> FillPedidosconPlato (Plato plato)
         {
-            string query = @"Select * from Pedido_Plato inner join Pedido on Pedido_Plato.Codigo_Pedido=Pedido.Codigo_Pedido where Pedido_Plato.Codigo_Plato= " + plato.Codigo;
+            string query = @"Select * from Pedido_Plato inner join Pedido on Pedido_Plato.Codigo_Pedido=Pedido.Codigo_Pedido where Pedido_Plato.Codigo_Plato= " + plato.Codigo + "and Pedido.Activo=1";
             PedidosXplato.Clear();
             foreach (DataRow row in conexion.DevolverListado(query).Rows)
             {
                 Pedido pedido = new Pedido(Convert.ToInt32(row[3].ToString()), BuscarMesa(Convert.ToInt32(row[4].ToString())), BuscarMozo(Convert.ToInt32(row[5].ToString())), Convert.ToDateTime(row[6].ToString()), row[7].ToString(), Convert.ToDecimal(row[8].ToString()),Convert.ToBoolean(row[9].ToString()));
+                DetalleBebidas(pedido);
+                DetallePlatos(pedido);
+                pedido.CalcularMonto();
                 PedidosXplato.Add(pedido);
             }
             return PedidosXplato;
@@ -278,6 +283,16 @@ namespace Negocio
         #endregion
 
         #region FormatoDataGridViews
+
+        public void DGVGenerico(DataGridView dgv)
+        {
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         public void DGVMesas(DataGridView dgv)
         {
             dgv.Columns[0].Visible = false;
@@ -508,7 +523,7 @@ namespace Negocio
 
         public void CancelarReserva(Reserva reserva)
         {
-            string query = @"Update Reserva set Estado= 0 where Codigo_Reserva= " + reserva.Codigo;
+            string query = @"Update Reserva set Estado= 0, Nro_Mesa = NULL where Codigo_Reserva= " + reserva.Codigo;
             ABMAction(query);
         }
 
@@ -523,6 +538,76 @@ namespace Negocio
             ABMAction(query);
             query = @"update Mesa set Estado='Disponible', CantidadComensales=0 where Nro_Mesa= " + trans.Mesa;
             ABMAction(query);
+        }
+        public void CancelarPedido(Pedido pedido)
+        {
+            string query;
+            PedidoCancelado canc = new PedidoCancelado(pedido.NumeroPedido, pedido.Monto);
+            query = @"Insert into PedidosCancelado (Codigo_Pedido, Monto, Motivo) values (" + canc.Codigo_Pedido + "," + canc.Monto + ",'" + canc.Motivo + "')";
+            ABMAction(query);
+            query = @"update Pedido set Activo=0 where Codigo_Pedido= " + pedido.NumeroPedido;
+            ABMAction(query);
+            query = @"update Mesa set Estado='Disponible', CantidadComensales=0 where Nro_Mesa= " + pedido.CodigoMesa.NroDeMesa;
+            ABMAction(query);
+        }
+        public bool ExisteMesa(int Numero)
+        {
+            bool existe = false;
+            Mesa buscarmesa = ListadeMesas.Find(x=> x.NroDeMesa==Numero);
+            if (buscarmesa == null)
+            {
+                existe = true;
+            }
+            return existe;
+        }
+
+        public bool ExisteBebida(int Numero)
+        {
+            Bebida buscar = ListadeBebidas.Find(x => x.Codigo == Numero);
+            if (buscar == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool ExisteMozo(long DNI)
+        {
+            Mozo buscar = ListadeMozos.Find(x => x.DNI == DNI);
+            if (buscar == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool ExistePlato(string nombre)
+        {
+            Plato buscar = ListadePlatos.Find(x=> x.Nombre == nombre);
+            if (buscar == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool ExisteTurno(string nombre)
+        {
+            Turno buscar = ListadeTurnos.Find(x => x.NombreTurno == nombre);
+            if (buscar == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
 
@@ -550,7 +635,7 @@ namespace Negocio
             string query;
             if (accion == "Alta")
             {
-                query = @"Insert into Mozo (DNI, Nombre, Apellido, [Fecha Nacimiento], [Codigo_Turno]) values (" + mozo.DNI + ",'" + mozo.Nombre + "','" + mozo.Apellido + "','" + mozo.FechaNacimiento + "'," + mozo.turno.Codigo + ")";
+                query = @"Insert into Mozo (DNI, Nombre, Apellido, [Fecha Nacimiento], [Codigo_Turno]) values (" + mozo.DNI + ",'" + mozo.Nombre + "','" + mozo.Apellido + "','" + mozo.FechaNacimiento.ToString("yyyy-MM-dd") + "'," + mozo.turno.Codigo + ")";
             }
             else if (accion == "Modificar")
             {
@@ -626,7 +711,7 @@ namespace Negocio
             }
             else if (accion == "Modificar")
             {
-                query = @"Update Bebida set Nombre= '" + bebida.Nombre + "', Tipo= '" + bebida.Tipo + "', Presentación= '" + bebida.Presentación + "', Precio= " + bebida.Precio + "Stock= " + bebida.Stock + " [Graduacion Alcoholica]= " + bebida.GraduaciónAlcoholica + " where Codigo_Bebida= " + bebida.Codigo;
+                query = @"Update Bebida set Nombre= '" + bebida.Nombre + "', Tipo= '" + bebida.Tipo + "', Presentación= '" + bebida.Presentación + "', Precio= " + bebida.Precio + ", Stock= " + bebida.Stock + ", [Graduacion Alcoholica]= " + bebida.GraduaciónAlcoholica + " where Codigo_Bebida= " + bebida.Codigo;
             }
             else
             {
@@ -634,11 +719,33 @@ namespace Negocio
             }
             return query;
         }
-       
+
+        #endregion
+
+        #region Layout
+        public DataTable ActualizarLayout(string query)
+        {
+            
+            return conexion.DevolverListado(query);
+ 
+        }
+
         #endregion
         public void ABMAction (string query)
         {
-            conexion.EscribirDatos(query);
+            try
+            {
+                conexion.EscribirDatos(query);
+            }
+            catch(SqlException sql)
+            {
+                Calculos.MsgBox(sql.Message);
+            }
+            catch(Exception ex)
+            {
+                Calculos.MsgBox(ex.Message);
+            }
+
         }
 
 

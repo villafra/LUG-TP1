@@ -46,5 +46,11 @@
     <Compile Include="Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aspecto\Aspecto.csproj">
+      <Project>{ff7c3225-dd61-45ff-8df7-863d56532b4c}</Project>
+      <Name>Aspecto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -33,19 +33,49 @@ namespace Negocio
 
         public void ActualizarGrid()
         {
-            dgvPedidos.DataSource = null;
-            dgvPedidos.DataSource = restó.QueryPedidos();
+            Calculos.RefreshGrilla(dgvPedidos, restó.QueryPedidos());
             restó.DGVPedidos(dgvPedidos);
             
             
         }
+        private void btnCancelarPedido_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
+                Pedido pedido = (Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
+                DialogResult resultado = MessageBox.Show("Esta seguro que desea cancelar el pedido Nro: " + pedido.NumeroPedido + "\nCon un monto de: " + pedido.Monto.ToString(), "Restó", MessageBoxButtons.YesNo);
+                if (resultado == DialogResult.Yes)
+                {
+                    restó.CancelarPedido(pedido);
+                }
+            }
+            catch
+            {
+                Calculos.MsgBox("No hay Pedidos Para Cancelar");
+            }
+            finally
+            {
+                ActualizarGrid();
+}
+        }
 
         private void btnCerrarPedido_Click(object sender, EventArgs e)
         {
-            Pedido pedido = (Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
-            restó.CerrarPedido(pedido);
-            ActualizarGrid();
+            try
+            {
+                Pedido pedido = (Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
+                restó.CerrarPedido(pedido);
+            }
+            catch
+            {
+                Calculos.MsgBox("No hay Pedidos Para Cerrar");
+            }
+            finally
+            {
+                ActualizarGrid();
+            }
+            
         }
 
         private void Pedidos_Activated(object sender, EventArgs e)

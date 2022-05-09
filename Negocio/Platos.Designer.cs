@@ -30,6 +30,8 @@
         {
             this.dgvPlatos = new System.Windows.Forms.DataGridView();
             this.grpPlatos = new System.Windows.Forms.GroupBox();
+            this.txtCosto = new System.Windows.Forms.TextBox();
+            this.lblCosto = new System.Windows.Forms.Label();
             this.ComboClase = new System.Windows.Forms.ComboBox();
             this.ComboTipo = new System.Windows.Forms.ComboBox();
             this.lblClase = new System.Windows.Forms.Label();
@@ -45,8 +47,6 @@
             this.btnEliminarPlato = new System.Windows.Forms.Button();
             this.btnModificarPlato = new System.Windows.Forms.Button();
             this.btnNuevoPlato = new System.Windows.Forms.Button();
-            this.txtCosto = new System.Windows.Forms.TextBox();
-            this.lblCosto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).BeginInit();
             this.grpPlatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidosConPlat)).BeginInit();
@@ -57,12 +57,12 @@
             this.dgvPlatos.AllowUserToAddRows = false;
             this.dgvPlatos.AllowUserToDeleteRows = false;
             this.dgvPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlatos.Location = new System.Drawing.Point(17, 53);
+            this.dgvPlatos.Location = new System.Drawing.Point(5, 53);
             this.dgvPlatos.Name = "dgvPlatos";
             this.dgvPlatos.ReadOnly = true;
             this.dgvPlatos.RowHeadersWidth = 51;
             this.dgvPlatos.RowTemplate.Height = 24;
-            this.dgvPlatos.Size = new System.Drawing.Size(603, 254);
+            this.dgvPlatos.Size = new System.Drawing.Size(653, 254);
             this.dgvPlatos.TabIndex = 0;
             this.dgvPlatos.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPlatos_RowEnter);
             // 
@@ -87,6 +87,24 @@
             this.grpPlatos.TabIndex = 1;
             this.grpPlatos.TabStop = false;
             this.grpPlatos.Text = "Platos";
+            // 
+            // txtCosto
+            // 
+            this.txtCosto.Location = new System.Drawing.Point(482, 146);
+            this.txtCosto.Name = "txtCosto";
+            this.txtCosto.Size = new System.Drawing.Size(118, 22);
+            this.txtCosto.TabIndex = 22;
+            this.txtCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCosto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCosto_KeyPress);
+            // 
+            // lblCosto
+            // 
+            this.lblCosto.AutoSize = true;
+            this.lblCosto.Location = new System.Drawing.Point(479, 114);
+            this.lblCosto.Name = "lblCosto";
+            this.lblCosto.Size = new System.Drawing.Size(42, 16);
+            this.lblCosto.TabIndex = 21;
+            this.lblCosto.Text = "Costo";
             // 
             // ComboClase
             // 
@@ -200,12 +218,12 @@
             this.dgvPedidosConPlat.AllowUserToAddRows = false;
             this.dgvPedidosConPlat.AllowUserToDeleteRows = false;
             this.dgvPedidosConPlat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidosConPlat.Location = new System.Drawing.Point(626, 53);
+            this.dgvPedidosConPlat.Location = new System.Drawing.Point(664, 53);
             this.dgvPedidosConPlat.Name = "dgvPedidosConPlat";
             this.dgvPedidosConPlat.ReadOnly = true;
             this.dgvPedidosConPlat.RowHeadersWidth = 51;
             this.dgvPedidosConPlat.RowTemplate.Height = 24;
-            this.dgvPedidosConPlat.Size = new System.Drawing.Size(209, 254);
+            this.dgvPedidosConPlat.Size = new System.Drawing.Size(174, 254);
             this.dgvPedidosConPlat.TabIndex = 5;
             // 
             // btnEliminarPlato
@@ -252,23 +270,6 @@
             this.btnNuevoPlato.TabIndex = 2;
             this.btnNuevoPlato.UseVisualStyleBackColor = true;
             this.btnNuevoPlato.Click += new System.EventHandler(this.btnNuevoPlato_Click);
-            // 
-            // txtCosto
-            // 
-            this.txtCosto.Location = new System.Drawing.Point(482, 146);
-            this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(118, 22);
-            this.txtCosto.TabIndex = 22;
-            this.txtCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblCosto
-            // 
-            this.lblCosto.AutoSize = true;
-            this.lblCosto.Location = new System.Drawing.Point(479, 114);
-            this.lblCosto.Name = "lblCosto";
-            this.lblCosto.Size = new System.Drawing.Size(42, 16);
-            this.lblCosto.TabIndex = 21;
-            this.lblCosto.Text = "Costo";
             // 
             // frmPlatos
             // 
