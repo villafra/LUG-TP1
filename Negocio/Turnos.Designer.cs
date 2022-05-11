@@ -55,12 +55,12 @@
             this.dgvTurnos.AllowUserToAddRows = false;
             this.dgvTurnos.AllowUserToDeleteRows = false;
             this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTurnos.Location = new System.Drawing.Point(167, 53);
+            this.dgvTurnos.Location = new System.Drawing.Point(139, 53);
             this.dgvTurnos.Name = "dgvTurnos";
             this.dgvTurnos.ReadOnly = true;
             this.dgvTurnos.RowHeadersWidth = 51;
             this.dgvTurnos.RowTemplate.Height = 24;
-            this.dgvTurnos.Size = new System.Drawing.Size(512, 254);
+            this.dgvTurnos.Size = new System.Drawing.Size(568, 254);
             this.dgvTurnos.TabIndex = 0;
             this.dgvTurnos.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurnos_RowEnter);
             // 

@@ -106,7 +106,7 @@
             this.dgvBebidasActivas.ReadOnly = true;
             this.dgvBebidasActivas.RowHeadersWidth = 51;
             this.dgvBebidasActivas.RowTemplate.Height = 24;
-            this.dgvBebidasActivas.Size = new System.Drawing.Size(319, 90);
+            this.dgvBebidasActivas.Size = new System.Drawing.Size(319, 119);
             this.dgvBebidasActivas.TabIndex = 18;
             // 
             // dgvPlatosActivos
@@ -119,7 +119,7 @@
             this.dgvPlatosActivos.ReadOnly = true;
             this.dgvPlatosActivos.RowHeadersWidth = 51;
             this.dgvPlatosActivos.RowTemplate.Height = 24;
-            this.dgvPlatosActivos.Size = new System.Drawing.Size(323, 90);
+            this.dgvPlatosActivos.Size = new System.Drawing.Size(323, 119);
             this.dgvPlatosActivos.TabIndex = 17;
             // 
             // dgvTotalPlatos
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 577);
+            this.ClientSize = new System.Drawing.Size(844, 606);
             this.Controls.Add(this.dgvTotalBebidas);
             this.Controls.Add(this.dgvBebidasActivas);
             this.Controls.Add(this.dgvPlatosActivos);
